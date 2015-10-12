@@ -1,0 +1,131 @@
+﻿@font-face {
+    font-family: OpenSans;
+    //src: url("fonts/OpenSans-Lite.ttf");
+    src: url(//fonts.googleapis.com/css?family=Open+Sans:100);
+}
+
+@font-face {
+    font-family: Roboto-Thin;
+    src: url("fonts/Roboto-Thin.ttf");
+}
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url("fonts/Roboto-Light.ttf");
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+#bodyDiv {
+    border:0;
+    background-image: url(wallpaper3.png);
+    background-size: 100%;
+    /*// font-family:OpenSans,'Myriad Pro';*/
+    font-family: Roboto-Thin,"Open Sans";
+    font-weight: 100;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#caption {
+    font-family: Roboto-Thin;
+    color: white;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    text-align: left;
+    height: 70px;
+    line-height: 70px;
+    font-size: 70px;
+    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+}
+#captionOfDiagram{
+    font-family: Roboto-Thin;
+    color: white;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 40px;
+    
+}
+
+#CostumersAndProducts {
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+#Costumers {
+    width: 50%;
+    position: absolute;
+    top: 35%;
+    left: 70px;
+    text-align: center;
+}
+
+#Products {
+    width: 50%;
+    position: absolute;
+    top: 35%;
+    right: 70px;
+    text-align: center;
+}
+
+#CountOfCostumers {
+    height: 200px;
+    line-height: 200px;
+    font-size: 200px;
+    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+}
+
+#CountOfProducts {
+    height: 200px;
+    line-height: 200px;
+    font-size: 200px;
+    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+}
+
+#CountOfCostumersCaption {
+    line-height: 60px;
+    font-size: 60px;
+    text-shadow: black 0 0 50px,black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+}
+
+#CountOfProductsCaption {
+    line-height: 60px;
+    font-size: 60px;
+    text-shadow: black 0 0 50px,black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+}
+
+
+
+#owl-example .item img {
+    display: block;
+    width: 100%;
+    height: 100vh;
+
+    opacity: 0;
+}
+
+
+#owl-example .clickable {
+    position: absolute;
+    bottom: 10px;
+    margin-left: 30px;
+}
+
+#itemOfCostumersDiagram{
+    z-index:999;
+}
+
