@@ -126,6 +126,12 @@ body {
 }
 
 #itemOfCostumersDiagram{
-    z-index:999;
+    width: 1350px;
+  height: 700px;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 100px; left: 0; bottom: 0; right: 0;
+  z-index:999;
 }
 
