@@ -26,8 +26,8 @@ body {
 
 #bodyDiv {
     border:0;
-    background-image: url(wallpaper3.png);
-    background-size: 100%;
+    background-image: url(wallpaper4.png);
+    background-size: cover;
     /*// font-family:OpenSans,'Myriad Pro';*/
     font-family: Roboto-Thin,"Open Sans";
     font-weight: 100;
@@ -45,8 +45,20 @@ body {
     height: 70px;
     line-height: 70px;
     font-size: 70px;
-    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;/*black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px*/
 }
+.slogan {
+     font-family: Roboto-Thin;
+    color: white;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    text-align: right;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;     
+}
+
 .captionOfDiagram{
     font-family: Roboto-Thin;
     color: white;
@@ -85,29 +97,39 @@ body {
     height: 200px;
     line-height: 200px;
     font-size: 200px;
-    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+    text-shadow: black 0 0 100px,black 0 0 300px; /*black 0 0 200px,black 0 0 200px,black 0 0 200px,black 0 0 200px*/
 }
 
 #CountOfProducts {
     height: 200px;
     line-height: 200px;
     font-size: 200px;
-    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+    text-shadow: black 0 0 100px,black 0 0 300px;
 }
 
 #CountOfCostumersCaption {
     line-height: 60px;
     font-size: 60px;
-    text-shadow: black 0 0 50px,black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;
 }
 
 #CountOfProductsCaption {
     line-height: 60px;
     font-size: 60px;
-    text-shadow: black 0 0 50px,black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px;
+    text-shadow: black 0 0 50px, black 0 0 100px, black 0 0 300px;
 }
 
-
+.AcbAndSku{
+    font-family: Roboto-Thin;
+    color: white;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 40px;  
+}
 
 #owl-example .item{
     background-color: rgb(48,48,48);
@@ -128,7 +150,7 @@ body {
 }
 
 .itemOfDiagram{
-    width: 1350px;
+    width: 1390px;
   height: 700px;
   overflow: auto;
   margin: auto;
