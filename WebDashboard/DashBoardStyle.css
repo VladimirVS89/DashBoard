@@ -1,8 +1,4 @@
-﻿@font-face {
-    font-family: OpenSans;
-    //src: url("fonts/OpenSans-Lite.ttf");
-    src: url(//fonts.googleapis.com/css?family=Open+Sans:100);
-}
+﻿
 
 @font-face {
     font-family: Roboto-Thin;
@@ -26,10 +22,10 @@ body {
 
 #bodyDiv {
     border:0;
-    background-image: url(wallpaper4.png);
+    background-image: url(wallpaper3.png);
     background-size: cover;
     /*// font-family:OpenSans,'Myriad Pro';*/
-    font-family: Roboto-Thin,"Open Sans";
+    font-family: Roboto-Thin;
     font-weight: 100;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -42,10 +38,10 @@ body {
     top: 50px;
     left: 50px;
     text-align: left;
-    height: 70px;
-    line-height: 70px;
-    font-size: 70px;
-    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;/*black 0 0 50px,black 0 0 100px,black 0 0 150px,black 0 0 200px*/
+    height: 100px;
+    line-height: 100px;
+    font-size: 100px;
+    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;
 }
 .slogan {
      font-family: Roboto-Thin;
@@ -54,9 +50,9 @@ body {
     bottom: 15px;
     right: 20px;
     text-align: right;
-    height: 16px;
-    line-height: 16px;
-    font-size: 16px;     
+    height: 18px;
+    line-height: 18px;
+    font-size: 18px;     
 }
 
 .captionOfDiagram{
@@ -94,28 +90,28 @@ body {
 }
 
 #CountOfCostumers {
-    height: 200px;
-    line-height: 200px;
-    font-size: 200px;
-    text-shadow: black 0 0 100px,black 0 0 300px; /*black 0 0 200px,black 0 0 200px,black 0 0 200px,black 0 0 200px*/
+    height: 240px;
+    line-height: 240px;
+    font-size: 240px;
+    text-shadow: black 0 0 100px,black 0 0 300px; 
 }
 
 #CountOfProducts {
-    height: 200px;
-    line-height: 200px;
-    font-size: 200px;
+    height: 240px;
+    line-height: 240px;
+    font-size: 240px;
     text-shadow: black 0 0 100px,black 0 0 300px;
 }
 
 #CountOfCostumersCaption {
-    line-height: 60px;
-    font-size: 60px;
+    line-height: 100px;
+    font-size: 100px;
     text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;
 }
 
 #CountOfProductsCaption {
-    line-height: 60px;
-    font-size: 60px;
+    line-height: 100px;
+    font-size: 100px;
     text-shadow: black 0 0 50px, black 0 0 100px, black 0 0 300px;
 }
 
@@ -150,7 +146,7 @@ body {
 }
 
 .itemOfDiagram{
-    width: 1390px;
+    width: 1500px;
   height: 700px;
   overflow: auto;
   margin: auto;
