@@ -91,6 +91,7 @@
             Chart.defaults.global.tooltipFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
             Chart.defaults.global.scaleFontSize = 25;
             Chart.defaults.global.tooltipFontSize = 25;
+            Chart.defaults.global.animationSteps = 30;
             Chart.defaults.global.tooltipTemplate = "<\%= value \%>";
             Chart.defaults.global.onAnimationComplete = function () {
                 this.showTooltip(this.datasets[0].bars, true);
@@ -160,9 +161,31 @@
             $('#CountOfProducts').text('0');
             
             func();
-            setInterval(func, 5 * 60 * 1000);
+            setInterval(func, 1 * 30 * 1000);
+
+            changeBackground();
+            setInterval(changeBackground, 60 * 60 * 1000);
 
         });
+
+
+        function changeBackground() {
+
+            RandomInt = randomInteger(3, 23);
+
+            background = 'url(images/wallpaper' + RandomInt + '.png)'
+
+            $('#bodyDiv').css('background-image', background);
+
+        }
+
+        function randomInteger(min, max) {
+            var rand = min - 0.5 + Math.random() * (max - min + 1)
+            rand = Math.round(rand);
+            return rand;
+        }
+
+
         function func() {
             // $("#CountOfCostumers").val("Значение");
             

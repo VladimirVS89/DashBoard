@@ -22,7 +22,8 @@ body {
 
 #bodyDiv {
     border:0;
-    background: url(wallpaper4.png) Black;
+    background-color: Black;
+    background-image: url(images/wallpaper4.png);
     background-size: cover;
     /*// font-family:OpenSans,'Myriad Pro';*/
     font-family: Roboto-Light;
