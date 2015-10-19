@@ -1,116 +1,96 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="WebDashboard.Dashboard" %>
-
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" href="sample/css/normalize.css" />
+    <link rel="stylesheet" href="Sample/css/normalize.css" />
     <script src="jquery-2.1.4.min.js"></script>
     <link href="DashBoardStyle.css" rel="stylesheet" />
-
     <!-- Important Owl stylesheet -->
-    <link rel="stylesheet" href="owl.carousel/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="owl-carousel/owl.transitions.css" />
     <%--<link rel="stylesheet" href="owl.carousel2/assets/owl.carousel.css" />--%>
-
     <!-- Default Theme -->
-    <link rel="stylesheet" href="owl.carousel/owl-carousel/owl.theme.css" />
+    <link rel="stylesheet" href="owl-carousel/owl.theme.css" />
     <!-- Include js plugin -->
-    <script src="owl.carousel/owl-carousel/owl.carousel.js"></script>
-
+    <script src="owl-carousel/owl.carousel.min.js"></script>
     <%-- <script src="owl.carousel2/owl.carousel.js"></script>--%>
-
-    <script src="Chart.js-master/Chart.js"></script>
-
-
+    <script src="Chart.js-master/Chart.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-
-        <div id="bodyDiv">
-
-
-            <div id="owl-example" class="owl-carousel">
-
-                <div class="item" style="background: none">
-                    <div id="caption">Сегодня</div>
-                    <div class="slogan" style="text-shadow: black 0 0 20px,black 0 0 40px,black 0 0 40px,black 0 0 40px">(c) Мы партнеры для магазинов, кафе, ресторанов</div>
-                    <div id="CostumersAndProducts">
-
-                        <div id="Costumers">
-                            <div id="CountOfCostumers"></div>
-                            <div id="CountOfCostumersCaption">Клиенты</div>
+    <div id="bodyDiv">
+        <div id="owl-example" class="owl-carousel">
+            <div class="item" style="background: none">
+                <div id="caption">
+                    Сегодня</div>
+                <div class="slogan" style="text-shadow: black 2px 0px,black -2px 0, black 2px 2px,black -2px 2px,black -2px -2px,black 2px -2px,black 0 2px,black 0 -2px,black 0 0 6px,black 0 0 6px,black 0 0 6px;">
+                    Мы партнеры для магазинов, кафе, ресторанов</div>
+                <div id="CostumersAndProducts">
+                    <div id="Costumers">
+                        <div id="CountOfCostumers">
                         </div>
-                        <div id="Products">
-                            <div id="CountOfProducts"></div>
-                            <div id="CountOfProductsCaption">Ассортимент</div>
+                        <div id="CountOfCostumersCaption">
+                            АКБ</div>
+                    </div>
+                    <div id="Products">
+                        <div id="CountOfProducts">
                         </div>
-
-
+                        <div id="CountOfProductsCaption">
+                            Ассортимент</div>
                     </div>
-                    <img src="" data-thumb="" alt="" title="" />
                 </div>
-
-                <div class="item" style="background-color: rgb(48,48,48);">
-
-                    <div class="captionOfDiagram">АКБ за две предыдущие недели</div>
-                    <div class="AcbAndSku" id="CountOfCostumersAll"></div>
-                    <div class="slogan">(c) Мы партнеры для магазинов, кафе, ресторанов</div>
-                    <div class="itemOfDiagram">
-                        <canvas id="ChartOfCostumers" height="650" width="1390"></canvas>
-                    </div>
-
-                    <img src="" data-thumb="" alt="" title="" />
-
-                </div>
-
-                <div class="item">
-
-                    <div class="captionOfDiagram">Ассортимент за две предыдущие недели</div>
-                    <div class="AcbAndSku" id="CountOfProductsAll"></div>
-                    <div class="slogan">(c) Мы партнеры для магазинов, кафе, ресторанов</div>
-                    <div class="itemOfDiagram">
-                        <canvas id="ChartOfProducts" height="650" width="1390"></canvas>
-                    </div>
-
-                    <img src="" data-thumb="" alt="" title="" />
-
-                </div>
-
-
-
-
+                <%-- <img src="" data-thumb="" alt="" title="" />--%>
             </div>
-
+            <div class="item" style="background-color: rgb(48,48,48);">
+                <div class="captionOfDiagram">
+                    АКБ за две недели</div>
+                <div class="AcbAndSku" id="CountOfCostumersAll">
+                </div>
+                <div class="slogan">
+                    Мы партнеры для магазинов, кафе, ресторанов</div>
+                <div class="itemOfDiagram">
+                    <canvas id="ChartOfCostumers"></canvas>
+                </div>
+                <%--<img width="0" height="0" src="" data-thumb="" alt="" title="" />--%>
+            </div>
+            <div class="item">
+                <div class="captionOfDiagram">
+                    Ассортимент за две недели</div>
+                <div class="AcbAndSku" id="CountOfProductsAll">
+                </div>
+                <div class="slogan">
+                    Мы партнеры для магазинов, кафе, ресторанов</div>
+                <div class="itemOfDiagram">
+                    <canvas id="ChartOfProducts"></canvas>
+                </div>
+                <%-- <img width="0" height="0" src="" data-thumb="" alt="" title="" />--%>
+            </div>
         </div>
-
-
-
-
+    </div>
     </form>
-
-
-
-
-
     <script type="text/javascript">
 
         var DateMas = new Array;
         var CostumersCountMas = new Array;
         var ProductsCountMas = new Array;
+        var CostumersChart;
+        var ProductsChart;
+        var CountOfCostumersPre;
+        var CountOfCostumersForRender;
+        var CountOfCostumers;
+        var CountOfProductsPre;
+        var CountOfProductsForRender;
+        var CountOfProducts;
 
         $(document).ready(function () {
 
-            var CostumersChart;
 
             Chart.defaults.global.scaleFontColor = "#fff";
             Chart.defaults.global.scaleFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
             Chart.defaults.global.tooltipFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-            Chart.defaults.global.scaleFontSize = 16;
-            Chart.defaults.global.tooltipFontSize = 16;
+            Chart.defaults.global.scaleFontSize = 25;
+            Chart.defaults.global.tooltipFontSize = 25;
             Chart.defaults.global.tooltipTemplate = "<\%= value \%>";
             Chart.defaults.global.onAnimationComplete = function () {
                 this.showTooltip(this.datasets[0].bars, true);
@@ -118,49 +98,74 @@
             Chart.defaults.global.tooltipEvents = [];
            
 
-            
-
-
+ 
             $("#owl-example").owlCarousel({
 
                 navigation: false, // Show next and prev buttons
                 slideSpeed: 300,
                 paginationSpeed: 400,
                 singleItem: true,
-                autoPlay: 5 * 60 * 1000,
+                mouseDrag : false,
+                stopOnHover : false,
+                autoPlay: 1 * 30 * 1000,
+                transitionStyle : "fadeUp",
                 afterMove: function (elem) {
                     var currentItem = this.owl.currentItem;
                     switch (currentItem) {
                         case 1: {
-                            try {
+                           console.log(CountOfCostumersForRender,CountOfCostumers); 
+                           if (CountOfCostumersForRender===CountOfCostumers){
+
+                             try {
                                 CostumersChart.render();
-                            } catch (err) {
-                                CostumersChart = drawCostumers();
+                                console.log('renderCostumer');
+                             } catch (err) {
+                                console.log(err);
+                                CostumersChart = drawCostumers(); 
+                                console.log('renderErrCostumers');          
                             }
+                            }else{
+                                CountOfCostumersForRender = CountOfCostumers;
+                                console.log('drawCostumers');
+                                CostumersChart = drawCostumers();
+                            }    
+                            break;
                         }
                         case 2: {
-                            try {
+                            console.log(CountOfProductsForRender,CountOfProducts);
+                            if (CountOfProductsForRender===CountOfProducts){
+
+                             try {
                                 ProductsChart.render();
-                            } catch (err) {
+                                console.log('renderProducts');
+                             } catch (err) {
+                                console.log(err);
+                                ProductsChart = drawProducts();
+                                console.log('renderErrProducts');           
+                            }
+                            }else{
+                                CountOfProductsForRender = CountOfProducts;
+                                console.log('drawProducts');
                                 ProductsChart = drawProducts();
                             }
+                            break;
                         }
                     }
                    
                 }
-
-
             });
 
+            
             $('#CountOfCostumers').text('0');
             $('#CountOfProducts').text('0');
+            
             func();
             setInterval(func, 5 * 60 * 1000);
 
         });
         function func() {
             // $("#CountOfCostumers").val("Значение");
-
+            
             $.ajax({
                 url: "data.xml",
                 dataType: "xml",
@@ -172,40 +177,26 @@
 
 
         function xmlParser(xml) {
-
-
-            //  $('#load').fadeOut();
-
-
-
-            var DataForDiagram = $(xml).find("DataForDiagram").eq(0);
-
-            DataForDiagram.find("Period").each(function () {
-
-                var Period = $(this).text();
-                window.DateMas.push(Period);
-
-            });
-
-            DataForDiagram.find("CountOfCostumers").each(function () {
-
-                var CountOfCostumers = $(this).text();
-                window.CostumersCountMas.push(+CountOfCostumers);
-
-            });
-
-            DataForDiagram.find("CountOfProducts").each(function () {
-
-                var CountOfProducts = $(this).text();
-                window.ProductsCountMas.push(+CountOfProducts);
-
-            });
-
-
+       
             var TodayData = $(xml).find("CountOf").eq(0);
 
-            var CountOfCostumersPre = $("#CountOfCostumers").text();
-            var CountOfCostumers = TodayData.find("CountOfCostumers").text();
+            CountOfCostumersPre = $("#CountOfCostumers").text();
+            CountOfCostumers = TodayData.find("CountOfCostumers").text();
+
+//          if (CountOfCostumersPre!==CountOfCostumers){
+
+//             try {
+
+//                 CostumersChart.datasets[0].bars[2].value = CountOfCostumers;
+//        
+//                            
+//                  CostumersChart.update();
+//                  console.log(CountOfCostumersPre,CountOfCostumers,'CostumersChart.update'); 
+//                  } catch (err) {
+//                    console.log(err);           
+//                 }
+//            }
+
 
             $({ numberValue: CountOfCostumersPre }).animate({ numberValue: CountOfCostumers }, {
                 duration: 8000,
@@ -215,10 +206,18 @@
                 }
             });
 
-            var CountOfProductsPre = $("#CountOfProducts").text();
-            var CountOfProducts = TodayData.find("CountOfProducts").text();
+            CountOfProductsPre = $("#CountOfProducts").text();
+            CountOfProducts = TodayData.find("CountOfProducts").text();
 
-            console.log(CountOfProducts);
+//            if (CountOfProductsPre!==CountOfProducts){
+//                try {
+//                          
+//                    ProductsChart.update();
+//                    console.log(CountOfProductsPre,CountOfProducts,'ProductsChart.update'); 
+//                } catch (err) {
+//                            console.log(err);    
+//                }
+//            }
 
             $({ numberValue: CountOfProductsPre }).animate({ numberValue: CountOfProducts }, {
                 duration: 8000,
@@ -233,8 +232,36 @@
             var CountOfProductsAll = TodayData.find("CountOfProductsAll").text();
             $('#CountOfProductsAll').text('Полный: '+ CountOfProductsAll);
 
+ 
+            DateMas=[];
+            CostumersCountMas=[];
+            ProductsCountMas=[];
+
+            var DataForDiagram = $(xml).find("DataForDiagram").eq(0);
+
+            DataForDiagram.find("Period").each(function () {
+
+                var Period = $(this).text();
+                window.DateMas.push(Period);
+
+            });
+
+            DataForDiagram.find("CountOfCostumers").each(function () {
+
+                var CountOfCostumersForDiagram = $(this).text();
+                window.CostumersCountMas.push(+CountOfCostumersForDiagram);
+
+            });
+
+            DataForDiagram.find("CountOfProducts").each(function () {
+
+                var CountOfProductsForDiagram = $(this).text();
+                window.ProductsCountMas.push(+CountOfProductsForDiagram);
+
+            });
 
         }
+
 
         function drawCostumers() {
 
@@ -297,7 +324,7 @@
                 barStrokeWidth: 2,
 
                 //Number - Spacing between each of the X value sets
-                barValueSpacing: 30,
+                barValueSpacing: 25,
 
                 //Number - Spacing between data sets within X values
                 barDatasetSpacing: 1,
@@ -368,7 +395,7 @@
                 barStrokeWidth: 2,
 
                 //Number - Spacing between each of the X value sets
-                barValueSpacing: 30,
+                barValueSpacing: 25,
 
                 //Number - Spacing between data sets within X values
                 barDatasetSpacing: 1,
@@ -381,11 +408,56 @@
             return myLineChart;
         }
 
+        
+        $(window).resize(function() {
+          
+      //   sizeOfCanvas(); 
+
+//        CostumersChart.clear();
+//        ProductsChart.clear(); 
+//        CostumersChart.resize();
+//        ProductsChart.resize(); 
+//        CostumersChart.destroy(); 
+//        ProductsChart.destroy();  
+//        
+//        CostumersChart = drawCostumers();
+//        ProductsChart = drawProducts();                   
+                       
+        });
+
+
+        $(window).load(function() {
+            sizeOfCanvas();  
+        });
+    
+        function sizeOfCanvas() {
+           
+            var widthOfCanvas = $('.itemOfDiagram').css('width').replace('px','');
+            var paddingLeftOfCanvas = $('.itemOfDiagram').css('padding-left').replace('px','');
+            var paddingRightOfCanvas = $('.itemOfDiagram').css('padding-right').replace('px','');
+            var paddingTopOfCanvas = $('.itemOfDiagram').css('padding-top').replace('px','');
+            var paddingBottomOfCanvas = $('.itemOfDiagram').css('padding-bottom').replace('px','');
+            var heightOfCanvas = $('.itemOfDiagram').css('height').replace('px','');
+
+            var widthOfCanvasNew=widthOfCanvas-paddingLeftOfCanvas-paddingRightOfCanvas+'px';
+            var heightOfCanvasNew=heightOfCanvas-paddingTopOfCanvas-paddingBottomOfCanvas+'px';
+ 
+
+
+            $('#ChartOfCostumers').attr('width',widthOfCanvasNew);
+            $('#ChartOfCostumers').attr('height',heightOfCanvasNew);
+            $('#ChartOfProducts').attr('width',widthOfCanvasNew);
+            $('#ChartOfProducts').attr('height',heightOfCanvasNew);
+
+            //console.log(widthOfCanvasNew,heightOfCanvasNew);
+
+        }
+
+       
+
     </script>
 </body>
 </html>
-
-
 <%--  $("#result").load("ajax/test.html");
 
             $.ajax({

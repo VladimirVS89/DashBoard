@@ -1,13 +1,13 @@
 ﻿
 
 @font-face {
-    font-family: Roboto-Thin;
-    src: url("fonts/Roboto-Thin.ttf");
+    font-family: Roboto-Light;
+    src: url("fonts/Roboto-Light.ttf");
 }
 
 @font-face {
-    font-family: Roboto-Light;
-    src: url("fonts/Roboto-Light.ttf");
+    font-family: Roboto-Thing;
+    src: url("fonts/Roboto-Thing.ttf");
 }
 
 html {
@@ -22,49 +22,49 @@ body {
 
 #bodyDiv {
     border:0;
-    background-image: url(wallpaper3.png);
+    background: url(wallpaper4.png) Black;
     background-size: cover;
     /*// font-family:OpenSans,'Myriad Pro';*/
-    font-family: Roboto-Thin;
+    font-family: Roboto-Light;
     font-weight: 100;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 #caption {
-    font-family: Roboto-Thin;
+    font-family: Roboto-Light;
     color: white;
     position: absolute;
     top: 50px;
     left: 50px;
     text-align: left;
-    height: 100px;
-    line-height: 100px;
-    font-size: 100px;
-    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 80px;
+    text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 .slogan {
-     font-family: Roboto-Thin;
+     font-family: Roboto-Light;
     color: white;
     position: absolute;
-    bottom: 15px;
-    right: 20px;
+    bottom: 5px;
+    right: 50px;
     text-align: right;
-    height: 18px;
-    line-height: 18px;
-    font-size: 18px;     
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;     
 }
 
 .captionOfDiagram{
-    font-family: Roboto-Thin;
+    font-family: Roboto-Light;
     color: white;
     position: absolute;
     top: 50px;
     left: 50px;
     text-align: left;
-    height: 40px;
-    line-height: 40px;
-    font-size: 40px;  
+    height: 60px;
+    line-height: 60px;
+    font-size: 60px;  
 }
 
 #CostumersAndProducts {
@@ -77,7 +77,7 @@ body {
     width: 50%;
     position: absolute;
     top: 35%;
-    left: 70px;
+    left: 50px;
     text-align: center;
 }
 
@@ -85,7 +85,7 @@ body {
     width: 50%;
     position: absolute;
     top: 35%;
-    right: 70px;
+    right: 50px;
     text-align: center;
 }
 
@@ -93,48 +93,52 @@ body {
     height: 240px;
     line-height: 240px;
     font-size: 240px;
-    text-shadow: black 0 0 100px,black 0 0 300px; 
+    text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 15px,black 0 0 15px,black 0 0 15px;
 }
 
 #CountOfProducts {
     height: 240px;
     line-height: 240px;
     font-size: 240px;
-    text-shadow: black 0 0 100px,black 0 0 300px;
+    text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 15px,black 0 0 15px,black 0 0 15px;
 }
 
 #CountOfCostumersCaption {
-    line-height: 100px;
-    font-size: 100px;
-    text-shadow: black 0 0 50px,black 0 0 100px,black 0 0 300px;
+    line-height: 80px;
+    font-size: 80px;
+    text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 
 #CountOfProductsCaption {
-    line-height: 100px;
-    font-size: 100px;
-    text-shadow: black 0 0 50px, black 0 0 100px, black 0 0 300px;
+    line-height: 80px;
+    font-size: 80px;
+    text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 
 .AcbAndSku{
-    font-family: Roboto-Thin;
+    font-family: Roboto-Light;
     color: white;
     position: absolute;
     top: 50px;
     right: 50px;
     text-align: left;
-    height: 40px;
-    line-height: 40px;
-    font-size: 40px;  
+    height: 60px;
+    line-height: 60px;
+    font-size: 60px;  
 }
 
-#owl-example .item{
+#owl-example .item
+{
+    margin:0;
     background-color: rgb(48,48,48);
+    height: 100vh;
+    
 }
 
 #owl-example .item img {
     display: block;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     opacity: 0;
 }
 
@@ -142,16 +146,15 @@ body {
 #owl-example .clickable {
     position: absolute;
     bottom: 10px;
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 .itemOfDiagram{
-    width: 1500px;
-  height: 700px;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 100px; left: 0; bottom: 0; right: 0;
+  
+  width:100%;
+  height:100%;
+ 
+ padding:150px 0px 65px 50px;
   z-index:999;
 }
 
