@@ -24,9 +24,9 @@
         <div id="bodyDiv">
             <div id="owl-example" class="owl-carousel">
                 <div class="item" style="background: none">
-                    <div id="caption">
+                    <!--<div id="caption">
                         Сегодня
-                    </div>
+                    </div>-->
                     <div class="slogan" style="text-shadow: black 2px 0px,black -2px 0, black 2px 2px,black -2px 2px,black -2px -2px,black 2px -2px,black 0 2px,black 0 -2px,black 0 0 6px,black 0 0 6px,black 0 0 6px;">
                         Мы партнеры для магазинов, кафе, ресторанов
                     </div>
@@ -35,18 +35,25 @@
                             <div id="CountOfCostumers">
                             </div>
                             <div id="CountOfCostumersCaption">
-                                АКБ
+                                Сегодня<br /> мы обслужили <br /> торговых точек
                             </div>
                         </div>
                         <div id="Products">
                             <div id="CountOfProducts">
                             </div>
                             <div id="CountOfProductsCaption">
-                                Ассортимент
+                                Отгрузили<br /> наименований<br /> продукции
+                            </div>
+                        </div>
+                        <div id="Remains">
+                            <div id="CountOfRemains">
+                            </div>
+                            <div id="CountOfRemainsCaption">
+                                Можем отгружать<br /> наименований<br /> продукции
                             </div>
                         </div>
                     </div>
-                    <%-- <img src="" data-thumb="" alt="" title="" />--%>
+                    <!-- <img src="" data-thumb="" alt="" title="" />-->
                 </div>
                 <div class="item" style="background-color: rgb(48,48,48);">
                     <div class="captionOfDiagram">
@@ -97,8 +104,8 @@
 
 
             Chart.defaults.global.scaleFontColor = "#fff";
-            Chart.defaults.global.scaleFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-            Chart.defaults.global.tooltipFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
+            Chart.defaults.global.scaleFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
+            Chart.defaults.global.tooltipFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
             Chart.defaults.global.scaleFontSize = 25;
             Chart.defaults.global.tooltipFontSize = 25;
             Chart.defaults.global.animationSteps = 30;
@@ -181,7 +188,7 @@
 
         function changeBackground() {
 
-            RandomInt = randomInteger(3, 23);
+            RandomInt = randomInteger(3, 22);
 
             background = 'url(images/wallpaper' + RandomInt + '.png)'
 
@@ -230,14 +237,15 @@
             //                 }
             //            }
 
+            $('#CountOfCostumers').text(CountOfCostumers);
 
-            $({ numberValue: CountOfCostumersPre }).animate({ numberValue: CountOfCostumers }, {
-                duration: 8000,
-                easing: 'linear',
-                step: function () {
-                    $('#CountOfCostumers').text(Math.ceil(this.numberValue));
-                }
-            });
+            //$({ numberValue: CountOfCostumersPre }).animate({ numberValue: CountOfCostumers }, {
+            //    duration: 8000,
+            //    easing: 'linear',
+            //    step: function () {
+            //        $('#CountOfCostumers').text(Math.ceil(this.numberValue));
+            //    }
+            //});
 
             CountOfProductsPre = $("#CountOfProducts").text();
             CountOfProducts = TodayData.find("CountOfProducts").text();
@@ -252,19 +260,33 @@
             //                }
             //            }
 
-            $({ numberValue: CountOfProductsPre }).animate({ numberValue: CountOfProducts }, {
-                duration: 8000,
-                easing: 'linear',
-                step: function () {
-                    $('#CountOfProducts').text(Math.ceil(this.numberValue));
-                }
-            });
+            $('#CountOfProducts').text(CountOfProducts);
+
+            //$({ numberValue: CountOfProductsPre }).animate({ numberValue: CountOfProducts }, {
+            //    duration: 8000,
+            //    easing: 'linear',
+            //    step: function () {
+            //        $('#CountOfProducts').text(Math.ceil(this.numberValue));
+            //    }
+            //});
 
             var CountOfCostumersAll = TodayData.find("CountOfCostumersAll").text();
             $('#CountOfCostumersAll').text('Общая: ' + CountOfCostumersAll);
             var CountOfProductsAll = TodayData.find("CountOfProductsAll").text();
-            $('#CountOfProductsAll').text('Полный: ' + CountOfProductsAll);
+            $('#CountOfProductsAll').text('Общий: ' + CountOfProductsAll);
 
+            CountOfRemainsPre = $("#CountOfRemains").text();
+            CountOfRemains = CountOfProductsAll;
+
+            $('#CountOfRemains').text(CountOfRemains);
+
+            //$({ numberValue: CountOfRemainsPre }).animate({ numberValue: CountOfRemains }, {
+            //    duration: 8000,
+            //    easing: 'linear',
+            //    step: function () {
+            //        $('#CountOfRemains').text(Math.ceil(this.numberValue));
+            //    }
+            //});
 
             DateMas = [];
             CostumersCountMas = [];

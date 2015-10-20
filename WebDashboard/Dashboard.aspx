@@ -22,8 +22,8 @@
     <div id="bodyDiv">
         <div id="owl-example" class="owl-carousel">
             <div class="item" style="background: none">
-                <div id="caption">
-                    Сегодня</div>
+               <%-- <div id="caption">
+                    Сегодня</div>--%>
                 <div class="slogan" style="text-shadow: black 2px 0px,black -2px 0, black 2px 2px,black -2px 2px,black -2px -2px,black 2px -2px,black 0 2px,black 0 -2px,black 0 0 6px,black 0 0 6px,black 0 0 6px;">
                     Мы партнеры для магазинов, кафе, ресторанов</div>
                 <div id="CostumersAndProducts">
@@ -31,13 +31,19 @@
                         <div id="CountOfCostumers">
                         </div>
                         <div id="CountOfCostumersCaption">
-                            АКБ</div>
+                            Сегодня<br /> мы обслужили <br /> торговых точек</div>
                     </div>
                     <div id="Products">
                         <div id="CountOfProducts">
                         </div>
                         <div id="CountOfProductsCaption">
-                            Ассортимент</div>
+                            Отгрузили<br /> наименований<br /> продукции</div>
+                    </div>
+                    <div id="Remains">
+                        <div id="CountOfRemains">
+                        </div>
+                        <div id="CountOfRemainsCaption">
+                            Можем отгружать<br /> наименований<br /> продукции</div>
                     </div>
                 </div>
                 <%-- <img src="" data-thumb="" alt="" title="" />--%>
@@ -87,8 +93,8 @@
 
 
             Chart.defaults.global.scaleFontColor = "#fff";
-            Chart.defaults.global.scaleFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-            Chart.defaults.global.tooltipFontFamily = "'Roboto-Thin', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
+            Chart.defaults.global.scaleFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
+            Chart.defaults.global.tooltipFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
             Chart.defaults.global.scaleFontSize = 25;
             Chart.defaults.global.tooltipFontSize = 25;
             Chart.defaults.global.animationSteps = 30;
@@ -108,7 +114,7 @@
                 singleItem: true,
                 mouseDrag : false,
                 stopOnHover : false,
-                autoPlay: 1 * 30 * 1000,
+                autoPlay: 5 * 30 * 1000,
                 transitionStyle : "fadeUp",
                 afterMove: function (elem) {
                     var currentItem = this.owl.currentItem;
@@ -253,8 +259,19 @@
             var CountOfCostumersAll = TodayData.find("CountOfCostumersAll").text();
             $('#CountOfCostumersAll').text('Общая: '+ CountOfCostumersAll);
             var CountOfProductsAll = TodayData.find("CountOfProductsAll").text();
-            $('#CountOfProductsAll').text('Полный: '+ CountOfProductsAll);
+            $('#CountOfProductsAll').text('Общий: ' + CountOfProductsAll);
 
+
+            CountOfRemainsPre = $("#CountOfRemains").text();
+            CountOfRemains = CountOfProductsAll;
+
+            $({ numberValue: CountOfRemainsPre }).animate({ numberValue: CountOfRemains }, {
+                duration: 8000,
+                easing: 'linear',
+                step: function () {
+                    $('#CountOfRemains').text(Math.ceil(this.numberValue));
+                }
+            });
  
             DateMas=[];
             CostumersCountMas=[];
