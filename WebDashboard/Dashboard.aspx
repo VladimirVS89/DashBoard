@@ -88,9 +88,9 @@
         var CountOfProductsPre;
         var CountOfProductsForRender;
         var CountOfProducts;
+        var owl;
 
         $(document).ready(function () {
-
 
             Chart.defaults.global.scaleFontColor = "#fff";
             Chart.defaults.global.scaleFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
@@ -105,8 +105,9 @@
             Chart.defaults.global.tooltipEvents = [];
            
 
- 
-            $("#owl-example").owlCarousel({
+            owl = $("#owl-example");
+
+            owl.owlCarousel({
 
                 navigation: false, // Show next and prev buttons
                 slideSpeed: 300,
@@ -114,11 +115,16 @@
                 singleItem: true,
                 mouseDrag : false,
                 stopOnHover : false,
-                autoPlay: 5 * 30 * 1000,
-                transitionStyle : "fadeUp",
+                autoPlay: 1 * 60 * 1000,
+                //transitionStyle : "fadeUp",
                 afterMove: function (elem) {
                     var currentItem = this.owl.currentItem;
                     switch (currentItem) {
+                        case 0: {
+                            this.stop();
+                            setTimeout(owlPlay, 1* 60 * 1000);
+                            break;
+                        }
                         case 1: {
                            console.log(CountOfCostumersForRender,CountOfCostumers); 
                            if (CountOfCostumersForRender===CountOfCostumers){
@@ -167,12 +173,16 @@
             $('#CountOfProducts').text('0');
             
             func();
-            setInterval(func, 1 * 30 * 1000);
+            setInterval(func, 1 * 60 * 1000);
 
             changeBackground();
             setInterval(changeBackground, 60 * 60 * 1000);
 
         });
+
+        function owlPlay() {
+            owl.trigger('owl.play', 1 * 60 * 1000);
+        }
 
 
         function changeBackground() {
@@ -364,7 +374,7 @@
                 barStrokeWidth: 2,
 
                 //Number - Spacing between each of the X value sets
-                barValueSpacing: 25,
+                barValueSpacing: 27,
 
                 //Number - Spacing between data sets within X values
                 barDatasetSpacing: 1,
@@ -435,7 +445,7 @@
                 barStrokeWidth: 2,
 
                 //Number - Spacing between each of the X value sets
-                barValueSpacing: 25,
+                barValueSpacing: 27,
 
                 //Number - Spacing between data sets within X values
                 barDatasetSpacing: 1,

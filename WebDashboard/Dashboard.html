@@ -99,6 +99,7 @@
         var CountOfProductsPre;
         var CountOfProductsForRender;
         var CountOfProducts;
+        var owl;
 
         $(document).ready(function () {
 
@@ -115,9 +116,9 @@
             };
             Chart.defaults.global.tooltipEvents = [];
 
+            owl = $("#owl-example");
 
-
-            $("#owl-example").owlCarousel({
+            owl.owlCarousel({
 
                 navigation: false, // Show next and prev buttons
                 slideSpeed: 300,
@@ -130,6 +131,11 @@
                 afterMove: function (elem) {
                     var currentItem = this.owl.currentItem;
                     switch (currentItem) {
+                        case 0: {
+                            this.stop();
+                            setTimeout(owlPlay, 1 * 60 * 1000);
+                            break;
+                        }
                         case 1: {
                             console.log(CountOfCostumersForRender, CountOfCostumers);
                             if (CountOfCostumersForRender === CountOfCostumers) {
@@ -176,6 +182,7 @@
 
             $('#CountOfCostumers').text('0');
             $('#CountOfProducts').text('0');
+            $('#CountOfRemains').text('0');
 
             func();
             setInterval(func, 15 * 60 * 1000);
@@ -185,6 +192,9 @@
 
         });
 
+        function owlPlay() {
+            owl.trigger('owl.play', 1 * 60 * 1000);
+        }
 
         function changeBackground() {
 
