@@ -137,39 +137,39 @@
                             break;
                         }
                         case 1: {
-                            console.log(CountOfCostumersForRender, CountOfCostumers);
+                            //console.log(CountOfCostumersForRender, CountOfCostumers);
                             if (CountOfCostumersForRender === CountOfCostumers) {
 
                                 try {
                                     CostumersChart.render();
-                                    console.log('renderCostumer');
+                                    //console.log('renderCostumer');
                                 } catch (err) {
-                                    console.log(err);
+                                    //console.log(err);
                                     CostumersChart = drawCostumers();
-                                    console.log('renderErrCostumers');
+                                    //console.log('renderErrCostumers');
                                 }
                             } else {
                                 CountOfCostumersForRender = CountOfCostumers;
-                                console.log('drawCostumers');
+                                //console.log('drawCostumers');
                                 CostumersChart = drawCostumers();
                             }
                             break;
                         }
                         case 2: {
-                            console.log(CountOfProductsForRender, CountOfProducts);
+                            //console.log(CountOfProductsForRender, CountOfProducts);
                             if (CountOfProductsForRender === CountOfProducts) {
 
                                 try {
                                     ProductsChart.render();
-                                    console.log('renderProducts');
+                                    //console.log('renderProducts');
                                 } catch (err) {
-                                    console.log(err);
+                                    //console.log(err);
                                     ProductsChart = drawProducts();
-                                    console.log('renderErrProducts');
+                                    //console.log('renderErrProducts');
                                 }
                             } else {
                                 CountOfProductsForRender = CountOfProducts;
-                                console.log('drawProducts');
+                                //console.log('drawProducts');
                                 ProductsChart = drawProducts();
                             }
                             break;
@@ -198,7 +198,7 @@
 
         function changeBackground() {
 
-            RandomInt = randomInteger(3, 22);
+            RandomInt = randomInteger(3, 31);
 
             background = 'url(images/wallpaper' + RandomInt + '.png)'
 

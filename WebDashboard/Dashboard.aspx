@@ -187,7 +187,7 @@
 
         function changeBackground() {
 
-            RandomInt = randomInteger(3, 23);
+            RandomInt = randomInteger(3, 31);
 
             background = 'url(images/wallpaper' + RandomInt + '.png)'
 
