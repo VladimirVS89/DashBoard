@@ -95,8 +95,8 @@
             Chart.defaults.global.scaleFontColor = "#fff";
             Chart.defaults.global.scaleFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
             Chart.defaults.global.tooltipFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-            Chart.defaults.global.scaleFontSize = 25;
-            Chart.defaults.global.tooltipFontSize = 25;
+            Chart.defaults.global.scaleFontSize = 27;
+            Chart.defaults.global.tooltipFontSize = 27;
             Chart.defaults.global.animationSteps = 30;
             Chart.defaults.global.tooltipTemplate = "<\%= value \%>";
             Chart.defaults.global.onAnimationComplete = function () {
@@ -117,6 +117,17 @@
                 stopOnHover : false,
                 autoPlay: 1 * 60 * 1000,
                 //transitionStyle : "fadeUp",
+                //beforeMove: function (elem) {
+                //    try {
+                //        sizeOfCanvas();
+                //        CostumersChart.resize();
+                //        ProductsChart.resize();
+                //        console.log('resizeCostumer');
+                //    }
+                //    catch (err) {
+                //        console.log(err);
+                //    }
+                //},
                 afterMove: function (elem) {
                     var currentItem = this.owl.currentItem;
                     switch (currentItem) {
