@@ -64,9 +64,9 @@ body {
     top: 50px;
     left: 50px;
     text-align: left;
-    height: 60px;
-    line-height: 60px;
-    font-size: 60px;  
+    height: 45px;
+    line-height: 45px;
+    font-size: 45px;  
 }
 
 #CostumersAndProducts {
@@ -149,7 +149,7 @@ body {
     color: white;
     position: absolute;
     top: 50px;
-    right: 50px;
+    right: 550px;
     text-align: left;
     height: 60px;
     line-height: 60px;
@@ -186,3 +186,13 @@ body {
  padding:150px 0px 65px 50px;
   z-index:999;
 }
+
+ #sumHistory .itemAgent {
+     padding-bottom:5px;
+    list-style-type: none; /* Прячем исходные маркеры */
+   }
+  #sumHistory .itemAgent:before {
+    color: red; /* Цвет маркера */
+    content: "● "; /* Сам маркер */
+    padding-right: 10px; /* Расстояние от маркера до текста */
+   }

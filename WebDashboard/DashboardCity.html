@@ -57,15 +57,20 @@
                 </div>
                 <div class="item" style="background-color: rgb(48,48,48);">
                     <div class="captionOfDiagram">
-                        АКБ за две недели
+                        Выполнение плана по сумме, %
                     </div>
-                    <div class="AcbAndSku" id="CountOfCostumersAll">
-                    </div>
+                    <!--<div class="AcbAndSku" id="CountOfCostumersAll">
+                    </div>-->
                     <div class="slogan">
                         Мы партнеры для магазинов, кафе, ресторанов
                     </div>
                     <div class="itemOfDiagram">
                         <canvas id="ChartOfCostumers"></canvas>
+                    </div>
+                    <div style="position: absolute; top: 20px; right: 0px; color: white; width: 500px;">
+                        <ul id="sumHistory" style="padding:0px; margin:0;">
+
+                        </ul>
                     </div>
                     <!--<img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
                 </div>
@@ -326,6 +331,8 @@
 
             var AgentNumber = 0;
 
+            $('#sumHistory').find("itemAgent").each(function () { $(this).remove(); });
+
             var DataForDiagram = $(xml).find("DataForDiagram").eq(0);
 
             DataForDiagram.find("Agent").each(function () {
@@ -333,6 +340,7 @@
                 var Agent = $(this).attr('Name');
                 AgentMas.push(Agent);
 
+                $("#sumHistory").append("<li class='itemAgent'>"+Agent+"</li>");
                 
                 SumMas = [];
                 VisitsMas = [];
