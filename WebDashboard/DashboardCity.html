@@ -88,9 +88,17 @@
    
     <script type="text/javascript">
 
+        //var DateMas = new Array;
+        //var CostumersCountMas = new Array;
+        //var ProductsCountMas = new Array;
+        var AgentMas = new Array;
         var DateMas = new Array;
-        var CostumersCountMas = new Array;
-        var ProductsCountMas = new Array;
+        var SumMas = new Array;
+        var VisitsMas = new Array;
+        var MMLMas = new Array;
+        var SumDataMas = new Array;
+        var VisitsDataMas = new Array;
+        var MMLDataMas = new Array;
         var CostumersChart;
         var ProductsChart;
         var CountOfCostumersPre;
@@ -114,7 +122,7 @@
             Chart.defaults.global.onAnimationComplete = function () {
                 this.showTooltip(this.datasets[0].bars, true);
             };
-            Chart.defaults.global.tooltipEvents = [];
+            //Chart.defaults.global.tooltipEvents = [];
 
             owl = $("#owl-example");
 
@@ -217,7 +225,7 @@
             // $("#CountOfCostumers").val("Значение");
 
             $.ajax({
-                url: "data.xml",
+                url: "dataCity.xml",
                 dataType: "xml",
                 cache: false,
                 success: xmlParser
@@ -232,6 +240,8 @@
 
             CountOfCostumersPre = $("#CountOfCostumers").text();
             CountOfCostumers = TodayData.find("CountOfCostumers").text();
+
+            SumDataMas
 
             //          if (CountOfCostumersPre!==CountOfCostumers){
 
@@ -298,32 +308,103 @@
             //    }
             //});
 
+           
+            AgentMas = [];
             DateMas = [];
-            CostumersCountMas = [];
-            ProductsCountMas = [];
+
+            //#F44336 Red
+            //#9C27B0 Purple
+            //#3F51B5 Indigo
+            //#00BCD4 Cyan
+            //#009688 Teal
+            //#4CAF50 Green
+            //#CDDC39 Lime
+            //#FFEB3B Yellow
+            //#FF9800 Orange
+
+            var colorsMas = ['#F44336', '#9C27B0', '#FFEB3B', '#00BCD4'];
+
+            var AgentNumber = 0;
 
             var DataForDiagram = $(xml).find("DataForDiagram").eq(0);
 
-            DataForDiagram.find("Period").each(function () {
+            DataForDiagram.find("Agent").each(function () {
 
-                var Period = $(this).text();
-                window.DateMas.push(Period);
+                var Agent = $(this).attr('Name');
+                AgentMas.push(Agent);
+
+                
+                SumMas = [];
+                VisitsMas = [];
+                MMLMas = [];
+
+                $(this).find("Period").each(function () {
+
+                    var Period = $(this).text();
+                    if ($.inArray(Period, DateMas) === -1)
+                    window.DateMas.push(Period);
+
+                });
+
+                $(this).find("PersentOfSum").each(function () {
+
+                    var SumForDiagram = $(this).text();
+                    window.SumMas.push(+SumForDiagram);
+
+                });
+
+                $(this).find("PersentOfVisits").each(function () {
+
+                    var VisitsForDiagram = $(this).text();
+                    window.VisitsMas.push(+VisitsForDiagram);
+
+                });
+
+                $(this).find("PersentOfMML").each(function () {
+
+                    var MMLForDiagram = $(this).text();
+                    window.MMLMas.push(+MMLForDiagram);
+
+                });
+
+                objSumm = {
+                    label: "My First dataset",
+                    fillColor: "rgba(95,139,149,.0)",
+                    strokeColor: colorsMas[AgentNumber],
+                    highlightFill: "rgba(95,139,149,.75)",
+                    highlightStroke: "rgba(95,139,149,1)",
+                    data: SumMas
+                };
+
+                objVisits = {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: VisitsMas
+                };
+
+                objMML = {
+                    label: "My First dataset",
+                    fillColor: "rgba(95,139,149,.5)",
+                    strokeColor: "rgba(95,139,149,.8)",
+                    highlightFill: "rgba(95,139,149,.75)",
+                    highlightStroke: "rgba(95,139,149,1)",
+                    data: MMLMas
+                };
+
+                AgentNumber++;
+
+                SumDataMas.push(objSumm);
+                VisitsDataMas.push(objVisits);
+                MMLDataMas.push(objMML);
 
             });
 
-            DataForDiagram.find("CountOfCostumers").each(function () {
-
-                var CountOfCostumersForDiagram = $(this).text();
-                window.CostumersCountMas.push(+CountOfCostumersForDiagram);
-
-            });
-
-            DataForDiagram.find("CountOfProducts").each(function () {
-
-                var CountOfProductsForDiagram = $(this).text();
-                window.ProductsCountMas.push(+CountOfProductsForDiagram);
-
-            });
+            console.log(AgentMas, DateMas, SumMas, VisitsMas, MMLMas, SumDataMas, VisitsDataMas, MMLDataMas);
 
         }
 
@@ -346,22 +427,24 @@
             var Fr = 177;
             var Sat = 177;
 
+           
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+
+
+
 
             var data = {
                 labels: DateMas, //["Понедельник", "Вторник", "Среда", "Черверг", "Пятница", "Суббота"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(95,139,149,.5)",
-                        strokeColor: "rgba(95,139,149,.8)",
-                        highlightFill: "rgba(95,139,149,.75)",
-                        highlightStroke: "rgba(95,139,149,1)",
-                        data: CostumersCountMas //[Mon, Tue, Wed, Thur, Fr, Sat]
-                    }
-                ]
+                datasets: SumDataMas
             };
 
-            var myLineChart = new Chart(ctx).Bar(data, {
+            var myLineChart = new Chart(ctx).Line(data, {
                 //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
                 scaleBeginAtZero: true,
 

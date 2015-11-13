@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DashboardCity.html" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard.html" />
     <Content Include="DashBoardStyle.css" />
