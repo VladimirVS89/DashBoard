@@ -67,7 +67,7 @@
                     <div class="itemOfDiagram">
                         <canvas id="ChartOfCostumers"></canvas>
                     </div>
-                    <div style="position: absolute; top: 20px; right: 0px; color: white; width: 500px;">
+                    <div style="font-family: RobotoCondensed-Light; position: absolute; top: 20px; right: 0px; color: white; width: 550px;">
                         <ul id="sumHistory" style="padding:0px; margin:0;">
 
                         </ul>
@@ -198,7 +198,7 @@
             $('#CountOfRemains').text('0');
 
             func();
-            setInterval(func, 15 * 60 * 1000);
+            setInterval(func, 1 * 60 * 1000);
 
             changeBackground();
             setInterval(changeBackground, 60 * 60 * 1000);
@@ -246,7 +246,6 @@
             CountOfCostumersPre = $("#CountOfCostumers").text();
             CountOfCostumers = TodayData.find("CountOfCostumers").text();
 
-            SumDataMas
 
             //          if (CountOfCostumersPre!==CountOfCostumers){
 
@@ -331,7 +330,7 @@
 
             var AgentNumber = 0;
 
-            $('#sumHistory').find("itemAgent").each(function () { $(this).remove(); });
+            $('#sumHistory').find(".itemAgent").each(function () { $(this).remove(); });
 
             var DataForDiagram = $(xml).find("DataForDiagram").eq(0);
 
@@ -340,7 +339,8 @@
                 var Agent = $(this).attr('Name');
                 AgentMas.push(Agent);
 
-                $("#sumHistory").append("<li class='itemAgent'>"+Agent+"</li>");
+                $("#sumHistory").append("<li class='itemAgent' id='itemAgent" + AgentNumber + "'><span style='color:" + colorsMas[AgentNumber] + "'>●&nbsp&nbsp</span>" + Agent + "</li>");
+            
                 
                 SumMas = [];
                 VisitsMas = [];
@@ -485,9 +485,14 @@
                 //Number - Spacing between data sets within X values
                 barDatasetSpacing: 1,
 
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+
 
 
             });
+
+            console.log(myLineChart.generateLegend());
 
             return myLineChart;
         }
@@ -510,17 +515,7 @@
 
             var data = {
                 labels: DateMas, //["Понедельник", "Вторник", "Среда", "Черверг", "Пятница", "Суббота"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(186,77,81,0.5)",
-                        strokeColor: "rgba(186,77,81,0.8)",
-                        highlightFill: "rgba(186,77,81,0.75)",
-                        highlightStroke: "rgba(186,77,81,1)",
-                        data: ProductsCountMas //[Mon, Tue, Wed, Thur, Fr, Sat]
-                    }
-
-                ]
+                datasets: VisitsDataMas
             };
 
             var myLineChart = new Chart(ctx).Bar(data, {

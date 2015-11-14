@@ -14,6 +14,11 @@
     src: url("fonts/Roboto-Regular.ttf");
 }
 
+@font-face {
+    font-family: RobotoCondensed-Light;
+    src: url("fonts/RobotoCondensed-Light.ttf");
+}
+
 html {
     width: 100%;
     height: 100%;
@@ -64,9 +69,9 @@ body {
     top: 50px;
     left: 50px;
     text-align: left;
-    height: 45px;
-    line-height: 45px;
-    font-size: 45px;  
+    height: 50px;
+    line-height: 50px;
+    font-size: 50px;  
 }
 
 #CostumersAndProducts {
@@ -189,10 +194,7 @@ body {
 
  #sumHistory .itemAgent {
      padding-bottom:5px;
+     font-size: 20px;
     list-style-type: none; /* Прячем исходные маркеры */
    }
-  #sumHistory .itemAgent:before {
-    color: red; /* Цвет маркера */
-    content: "● "; /* Сам маркер */
-    padding-right: 10px; /* Расстояние от маркера до текста */
-   }
+
