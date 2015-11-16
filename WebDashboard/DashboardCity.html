@@ -107,17 +107,51 @@
                     </div>
                     <!--<img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
                 </div>
+                
                 <div class="item">
                     <div class="captionOfDiagram">
-                        Ассортимент за две недели
+                        Показатели за день, %
                     </div>
-                    <div class="AcbAndSku" id="CountOfProductsAll">
+                    <!--<div class="AcbAndSku" id="CountOfProductsAll">
+                    </div>-->
+                    <div class="slogan">
+                        Мы партнеры для магазинов, кафе, ресторанов
+                    </div>
+                    <div class="itemOfDiagram">
+                        <canvas id="ChartOfToday"></canvas>
+                    </div>
+                    <div class="divOfHistory">
+                        <ul class="sumHistory"></ul>
+                    </div>
+                    <!-- <img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
+                </div>
+                <div class="item">
+                    <div class="captionOfDiagram">
+                        Показатели за текущий месяц, %
                     </div>
                     <div class="slogan">
                         Мы партнеры для магазинов, кафе, ресторанов
                     </div>
                     <div class="itemOfDiagram">
-                        <canvas id="ChartOfProducts"></canvas>
+                        <canvas id="ChartOfMonth"></canvas>
+                    </div>
+                    <div class="divOfHistory">
+                        <ul class="sumHistory"></ul>
+                    </div>
+                    <!-- <img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
+                </div>
+                <div class="item">
+                    <div class="captionOfDiagram">
+                       Общие показатели за текущий месяц, %
+                    </div>
+                    <div class="slogan">
+                        Мы партнеры для магазинов, кафе, ресторанов
+                    </div>
+                    <div class="itemOfDiagram">
+                        <canvas id="ChartOfFull"></canvas>
+                    </div>
+                    <div class="divOfHistory">
+                        <ul class="sumHistory"></ul>
                     </div>
                     <!-- <img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
                 </div>
@@ -162,9 +196,9 @@
 
             // String - Template string for multiple tooltips
             Chart.defaults.global.multiTooltipTemplate = "<%= value %>%";
-            Chart.defaults.global.onAnimationComplete = function () {
-                this.showTooltip(this.datasets[0].bars, true);
-            };
+            //Chart.defaults.global.onAnimationComplete = function () {
+            //    this.showTooltip(this.datasets[0].bars, true);
+            //};
             //Chart.defaults.global.tooltipEvents = [];
 
             owl = $("#owl-example");
@@ -241,6 +275,63 @@
                                 CountOfCostumersForRender = CountOfCostumers;
                                 //console.log('drawProducts');
                                 MMLChart = drawMML();
+                            }
+                            break;
+                        }
+                        case 4: {
+                            //console.log(CountOfProductsForRender, CountOfProducts);
+                            if (CountOfCostumersForRender === CountOfCostumers) {
+
+                                try {
+                                    TodayChart.render();
+                                    //console.log('renderProducts');
+                                } catch (err) {
+                                    //console.log(err);
+                                    TodayChart = drawToday();
+                                    //console.log('renderErrProducts');
+                                }
+                            } else {
+                                CountOfCostumersForRender = CountOfCostumers;
+                                //console.log('drawProducts');
+                                TodayChart = drawToday();
+                            }
+                            break;
+                        }
+                        case 5: {
+                            //console.log(CountOfProductsForRender, CountOfProducts);
+                            if (CountOfCostumersForRender === CountOfCostumers) {
+
+                                try {
+                                    MonthChart.render();
+                                    //console.log('renderProducts');
+                                } catch (err) {
+                                    //console.log(err);
+                                    MonthChart = drawMonth();
+                                    //console.log('renderErrProducts');
+                                }
+                            } else {
+                                CountOfCostumersForRender = CountOfCostumers;
+                                //console.log('drawProducts');
+                                MonthChart = drawMonth();
+                            }
+                            break;
+                        }
+                        case 6: {
+                            //console.log(CountOfProductsForRender, CountOfProducts);
+                            if (CountOfCostumersForRender === CountOfCostumers) {
+
+                                try {
+                                    FullChart.render();
+                                    //console.log('renderProducts');
+                                } catch (err) {
+                                    //console.log(err);
+                                    FullChart = drawFull();
+                                    //console.log('renderErrProducts');
+                                }
+                            } else {
+                                CountOfCostumersForRender = CountOfCostumers;
+                                //console.log('drawProducts');
+                                FullChart = drawFull();
                             }
                             break;
                         }
@@ -375,6 +466,9 @@
             SumDataMas = [];
             VisitsDataMas = [];
             MMLDataMas = [];
+            TodayDataMas = [];
+            MonthDataMas = [];
+            FullDataMas = [];
 
             //#F44336 Red
             //#9C27B0 Purple
@@ -397,7 +491,7 @@
             DataForDiagram.find("Agent").each(function () {
 
                 var Agent = $(this).attr('Name');
-                AgentMas.push(Agent);
+                AgentMas.push(Agent.split(" ")[0]);
 
                 $(".sumHistory").append("<li class='itemAgent' ><span style='color:" + colorsMas[AgentNumber] + "'>●&nbsp&nbsp</span>" + Agent + "</li>");
             
@@ -410,28 +504,78 @@
 
                     var Period = $(this).text();
                     if ($.inArray(Period, DateMas) === -1)
-                    window.DateMas.push(Period);
+                    DateMas.push(Period);
 
                 });
 
                 $(this).find("PersentOfSum").each(function () {
 
                     var SumForDiagram = $(this).text();
-                    window.SumMas.push(+SumForDiagram);
+                    SumMas.push(+SumForDiagram);
 
                 });
 
                 $(this).find("PersentOfVisits").each(function () {
 
                     var VisitsForDiagram = $(this).text();
-                    window.VisitsMas.push(+VisitsForDiagram);
+                    VisitsMas.push(+VisitsForDiagram);
 
                 });
 
                 $(this).find("PersentOfMML").each(function () {
 
                     var MMLForDiagram = $(this).text();
-                    window.MMLMas.push(+MMLForDiagram);
+                    MMLMas.push(+MMLForDiagram);
+
+                });
+
+                var SumToday = 0;
+                var VisitsToday = 0;
+                var MMLToday = 0;
+
+                $(this).find("PersentOfSumToday").each(function () {
+
+                    var SumForDiagram = $(this).text();
+                    SumToday = +SumForDiagram;
+
+                });
+
+                $(this).find("PersentOfVisitsToday").each(function () {
+
+                    var VisitsForDiagram = $(this).text();
+                    VisitsToday = +VisitsForDiagram;
+
+                });
+
+                $(this).find("PersentOfMMLToday").each(function () {
+
+                    var MMLForDiagram = $(this).text();
+                    MMLToday = +MMLForDiagram;
+
+                });
+
+                var SumFull = 0;
+                var VisitsFull = 0;
+                var MMLFull = 0;
+
+                $(this).find("PersentOfSumFull").each(function () {
+
+                    var SumForDiagram = $(this).text();
+                    SumFull=+SumForDiagram;
+
+                });
+
+                $(this).find("PersentOfVisitsFull").each(function () {
+
+                    var VisitsForDiagram = $(this).text();
+                    VisitsFull=+VisitsForDiagram;
+
+                });
+
+                $(this).find("PersentOfMMLFull").each(function () {
+
+                    var MMLForDiagram = $(this).text();
+                    MMLFull=+MMLForDiagram;
 
                 });
 
@@ -474,15 +618,45 @@
                     data: MMLMas
                 };
 
+                objToday = {
+                    label: "My First dataset" + AgentNumber,
+                    fillColor: colorsMas[AgentNumber],
+                    strokeColor: colorsMas[AgentNumber],
+                    highlightFill: colorsMas[AgentNumber],
+                    highlightStroke: "#fff",
+                    data: [SumToday, VisitsToday, MMLToday]
+                };
+
+                objMonth = {
+                    label: "My First dataset" + AgentNumber,
+                    fillColor: colorsMas[AgentNumber],
+                    strokeColor: colorsMas[AgentNumber],
+                    highlightFill: colorsMas[AgentNumber],
+                    highlightStroke: "#fff",
+                    data: [SumFull, VisitsFull, MMLFull]
+                };
+
+                objFull = {
+                    label: "My First dataset" + AgentNumber,
+                    fillColor: colorsMas[AgentNumber],
+                    strokeColor: colorsMas[AgentNumber],
+                    highlightFill: colorsMas[AgentNumber],
+                    highlightStroke: "#fff",
+                    data: [Math.round((SumFull + VisitsFull + MMLFull) / 3)]
+                };
+
                 AgentNumber++;
 
                 SumDataMas.push(objSumm);
                 VisitsDataMas.push(objVisits);
                 MMLDataMas.push(objMML);
+                TodayDataMas.push(objToday);
+                MonthDataMas.push(objMonth);
+                FullDataMas.push(objFull);
 
             });
 
-            console.log(AgentMas, DateMas, SumMas, VisitsMas, MMLMas, SumDataMas, VisitsDataMas, MMLDataMas);
+            console.log(AgentMas, DateMas, SumMas, VisitsMas, MMLMas, SumDataMas, VisitsDataMas, MMLDataMas, FullDataMas);
 
         }
 
@@ -727,6 +901,230 @@
             return myLineChart;
         }
 
+        function drawToday() {
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#ChartOfToday").get(0).getContext("2d");
+
+            // Chart.defaults.global.responsive = true;
+
+
+            var Sun = 177;
+            var Mon = 177;
+            var Tue = 77;
+            var Wed = 77;
+            var Thur = 177;
+            var Fr = 177;
+            var Sat = 177;
+
+
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+
+
+
+
+            var data = {
+                labels: ["По сумме", "По клиентам", "По MML"],
+                datasets: TodayDataMas
+            };
+
+            var myLineChart = new Chart(ctx).Bar(data, {
+
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero: true,
+
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor: "rgba(255,255,255,.08)",
+
+                tooltipFillColor: "rgba(0,0,0,0.8)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: true,
+
+                //Boolean - If there is a stroke on each bar
+                barShowStroke: true,
+
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth: 2,
+
+                //Number - Spacing between each of the X value sets
+                barValueSpacing: 27,
+
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing: 1,
+
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+
+            });
+
+            console.log(myLineChart.generateLegend());
+
+            return myLineChart;
+        }
+
+        function drawMonth() {
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#ChartOfMonth").get(0).getContext("2d");
+
+            // Chart.defaults.global.responsive = true;
+
+
+            var Sun = 177;
+            var Mon = 177;
+            var Tue = 77;
+            var Wed = 77;
+            var Thur = 177;
+            var Fr = 177;
+            var Sat = 177;
+
+
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+            var data = {
+                labels: ["По сумме", "По клиентам", "По MML"],
+                datasets: MonthDataMas
+            };
+
+            var myLineChart = new Chart(ctx).Bar(data, {
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero: true,
+
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor: "rgba(255,255,255,.08)",
+
+                tooltipFillColor: "rgba(0,0,0,0.8)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: true,
+
+                //Boolean - If there is a stroke on each bar
+                barShowStroke: true,
+
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth: 2,
+
+                //Number - Spacing between each of the X value sets
+                barValueSpacing: 27,
+
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing: 1,
+
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+
+
+
+            });
+
+            console.log(myLineChart.generateLegend());
+
+            return myLineChart;
+        }
+
+
+        function drawFull() {
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#ChartOfFull").get(0).getContext("2d");
+
+            // Chart.defaults.global.responsive = true;
+
+
+            var Sun = 177;
+            var Mon = 177;
+            var Tue = 77;
+            var Wed = 77;
+            var Thur = 177;
+            var Fr = 177;
+            var Sat = 177;
+
+
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+            var data = {
+                labels: [""],
+                datasets: FullDataMas
+            };
+
+            var myLineChart = new Chart(ctx).Bar(data, {
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero: true,
+
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor: "rgba(255,255,255,.08)",
+
+                tooltipFillColor: "rgba(0,0,0,0.8)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: true,
+
+                //Boolean - If there is a stroke on each bar
+                barShowStroke: true,
+
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth: 2,
+
+                //Number - Spacing between each of the X value sets
+                barValueSpacing: 27,
+
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing: 27,
+
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+            });
+
+            console.log(myLineChart.generateLegend());
+
+            return myLineChart;
+        }
+
+
 
         $(window).resize(function () {
 
@@ -769,6 +1167,12 @@
             $('#ChartOfVisits').attr('height', heightOfCanvasNew);
             $('#ChartOfMML').attr('width', widthOfCanvasNew);
             $('#ChartOfMML').attr('height', heightOfCanvasNew);
+            $('#ChartOfToday').attr('width', widthOfCanvasNew);
+            $('#ChartOfToday').attr('height', heightOfCanvasNew);
+            $('#ChartOfMonth').attr('width', widthOfCanvasNew);
+            $('#ChartOfMonth').attr('height', heightOfCanvasNew);
+            $('#ChartOfFull').attr('width', widthOfCanvasNew);
+            $('#ChartOfFull').attr('height', heightOfCanvasNew);
 
             //console.log(widthOfCanvasNew,heightOfCanvasNew);
 
