@@ -30,12 +30,12 @@ body {
 }
 
 #bodyDiv {
-    border:0;
+    border: 0;
     background-color: rgb(48,48,48);
     background-image: url(images/wallpaper4.png);
     background-size: cover;
     /*// font-family:OpenSans,'Myriad Pro';*/
-    font-family: Roboto-Light;
+    font-family: RobotoCondensed-Light;
     font-weight: 100;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -52,7 +52,9 @@ body {
     font-size: 75px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
+
 .slogan {
+    font-family:RobotoCondensed-Light;
     color: white;
     position: absolute;
     bottom: 5px;
@@ -60,10 +62,11 @@ body {
     text-align: right;
     height: 30px;
     line-height: 30px;
-    font-size: 30px;     
+    font-size: 30px;
 }
 
-.captionOfDiagram{
+.captionOfDiagram {
+    font-family:RobotoCondensed-Light;
     color: white;
     position: absolute;
     top: 50px;
@@ -71,18 +74,16 @@ body {
     text-align: left;
     height: 50px;
     line-height: 50px;
-    font-size: 50px;  
+    font-size: 50px;
 }
 
 #CostumersAndProducts {
     width: 100%;
     height: 100%;
     color: white;
-    
 }
 
 #Costumers {
-    
     position: absolute;
     top: 5%;
     left: 50px;
@@ -91,7 +92,6 @@ body {
 }
 
 #Products {
-   
     position: absolute;
     top: 35%;
     left: 50px;
@@ -100,7 +100,6 @@ body {
 }
 
 #Remains {
-   
     position: absolute;
     top: 65%;
     left: 50px;
@@ -109,7 +108,7 @@ body {
 }
 
 #CountOfCostumers {
-    float:right;
+    float: right;
     height: 270px;
     line-height: 270px;
     font-size: 270px;
@@ -117,7 +116,7 @@ body {
 }
 
 #CountOfProducts {
-    float:right;
+    float: right;
     height: 270px;
     line-height: 270px;
     font-size: 270px;
@@ -125,7 +124,7 @@ body {
 }
 
 #CountOfRemains {
-    float:right;
+    float: right;
     height: 270px;
     line-height: 270px;
     font-size: 270px;
@@ -150,7 +149,7 @@ body {
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 
-.AcbAndSku{
+.AcbAndSku {
     color: white;
     position: absolute;
     top: 50px;
@@ -158,23 +157,21 @@ body {
     text-align: left;
     height: 60px;
     line-height: 60px;
-    font-size: 60px;  
+    font-size: 60px;
 }
 
-#owl-example .item
-{
-    margin:0;
+#owl-example .item {
+    margin: 0;
     background-color: rgb(48,48,48);
     height: 100vh;
-    
 }
 
-#owl-example .item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-}
+    #owl-example .item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
 
 
 #owl-example .clickable {
@@ -183,18 +180,29 @@ body {
     margin-left: 50px;
 }
 
-.itemOfDiagram{
-  
-  width:100%;
-  height:100%;
- 
- padding:150px 0px 65px 50px;
-  z-index:999;
+.itemOfDiagram {
+    width: 100%;
+    height: 100%;
+    padding: 150px 0px 65px 50px;
+    z-index: 999;
 }
 
- #sumHistory .itemAgent {
-     padding-bottom:5px;
-     font-size: 20px;
-    list-style-type: none; /* Прячем исходные маркеры */
-   }
+.divOfHistory {
+    font-family: RobotoCondensed-Light;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    color: white;
+    width: 550px;
+}
 
+.sumHistory {
+    padding: 0px;
+    margin: 0;
+}
+
+    .sumHistory .itemAgent {
+        padding-bottom: 5px;
+        font-size: 20px;
+        list-style-type: none; /* Прячем исходные маркеры */
+    }

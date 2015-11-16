@@ -65,12 +65,45 @@
                         Мы партнеры для магазинов, кафе, ресторанов
                     </div>
                     <div class="itemOfDiagram">
-                        <canvas id="ChartOfCostumers"></canvas>
+                        <canvas id="ChartOfSum"></canvas>
                     </div>
-                    <div style="font-family: RobotoCondensed-Light; position: absolute; top: 20px; right: 0px; color: white; width: 550px;">
-                        <ul id="sumHistory" style="padding:0px; margin:0;">
-
+                    <div class="divOfHistory">
+                        <ul class="sumHistory">
                         </ul>
+                    </div>
+                    <!--<img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
+                </div>
+                <div class="item" style="background-color: rgb(48,48,48);">
+                    <div class="captionOfDiagram">
+                        Выполнение плана по клиентам, %
+                    </div>
+                    <!--<div class="AcbAndSku" id="CountOfCostumersAll">
+        </div>-->
+                    <div class="slogan">
+                        Мы партнеры для магазинов, кафе, ресторанов
+                    </div>
+                    <div class="itemOfDiagram">
+                        <canvas id="ChartOfVisits"></canvas>
+                    </div>
+                    <div class="divOfHistory">
+                        <ul class="sumHistory"></ul>
+                    </div>
+                    <!--<img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
+                </div>
+                <div class="item" style="background-color: rgb(48,48,48);">
+                    <div class="captionOfDiagram">
+                        Выполнение плана по MML, %
+                    </div>
+                    <!--<div class="AcbAndSku" id="CountOfCostumersAll">
+        </div>-->
+                    <div class="slogan">
+                        Мы партнеры для магазинов, кафе, ресторанов
+                    </div>
+                    <div class="itemOfDiagram">
+                        <canvas id="ChartOfMML"></canvas>
+                    </div>
+                    <div class="divOfHistory">
+                        <ul class="sumHistory"></ul>
                     </div>
                     <!--<img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
                 </div>
@@ -118,12 +151,17 @@
 
 
             Chart.defaults.global.scaleFontColor = "#fff";
-            Chart.defaults.global.scaleFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-            Chart.defaults.global.tooltipFontFamily = "'Roboto-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-            Chart.defaults.global.scaleFontSize = 27;
+            Chart.defaults.global.scaleFontFamily = "'RobotoCondensed-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
+            Chart.defaults.global.tooltipFontFamily = "'RobotoCondensed-Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
+            Chart.defaults.global.scaleFontSize = 25;
             Chart.defaults.global.tooltipFontSize = 27;
             Chart.defaults.global.animationSteps = 30;
-            Chart.defaults.global.tooltipTemplate = "<\%= value \%>";
+            //Chart.defaults.global.tooltipTemplate = "<\%= value \%>";
+            // String - Template string for single tooltips
+            Chart.defaults.global.tooltipTemplate = "<%if (label){%><%=label%>: <%}%><%= value %>";
+
+            // String - Template string for multiple tooltips
+            Chart.defaults.global.multiTooltipTemplate = "<%= value %>%";
             Chart.defaults.global.onAnimationComplete = function () {
                 this.showTooltip(this.datasets[0].bars, true);
             };
@@ -154,36 +192,55 @@
                             if (CountOfCostumersForRender === CountOfCostumers) {
 
                                 try {
-                                    CostumersChart.render();
+                                    SumChart.render();
                                     //console.log('renderCostumer');
                                 } catch (err) {
                                     //console.log(err);
-                                    CostumersChart = drawCostumers();
+                                    SumChart = drawSum();
                                     //console.log('renderErrCostumers');
                                 }
                             } else {
                                 CountOfCostumersForRender = CountOfCostumers;
                                 //console.log('drawCostumers');
-                                CostumersChart = drawCostumers();
+                                SumChart = drawSum();
                             }
                             break;
                         }
                         case 2: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfProductsForRender === CountOfProducts) {
+                            if (CountOfCostumersForRender === CountOfCostumers) {
 
                                 try {
-                                    ProductsChart.render();
+                                    VisitsChart.render();
                                     //console.log('renderProducts');
                                 } catch (err) {
                                     //console.log(err);
-                                    ProductsChart = drawProducts();
+                                    VisitsChart = drawVisits();
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfProductsForRender = CountOfProducts;
+                                CountOfCostumersForRender = CountOfCostumers;
                                 //console.log('drawProducts');
-                                ProductsChart = drawProducts();
+                                VisitsChart = drawVisits();
+                            }
+                            break;
+                        }
+                        case 3: {
+                            //console.log(CountOfProductsForRender, CountOfProducts);
+                            if (CountOfCostumersForRender === CountOfCostumers) {
+
+                                try {
+                                    MMLChart.render();
+                                    //console.log('renderProducts');
+                                } catch (err) {
+                                    //console.log(err);
+                                    MMLChart = drawMML();
+                                    //console.log('renderErrProducts');
+                                }
+                            } else {
+                                CountOfCostumersForRender = CountOfCostumers;
+                                //console.log('drawProducts');
+                                MMLChart = drawMML();
                             }
                             break;
                         }
@@ -315,6 +372,9 @@
            
             AgentMas = [];
             DateMas = [];
+            SumDataMas = [];
+            VisitsDataMas = [];
+            MMLDataMas = [];
 
             //#F44336 Red
             //#9C27B0 Purple
@@ -330,7 +390,7 @@
 
             var AgentNumber = 0;
 
-            $('#sumHistory').find(".itemAgent").each(function () { $(this).remove(); });
+            $('.sumHistory').find(".itemAgent").each(function () { $(this).remove(); });
 
             var DataForDiagram = $(xml).find("DataForDiagram").eq(0);
 
@@ -339,7 +399,7 @@
                 var Agent = $(this).attr('Name');
                 AgentMas.push(Agent);
 
-                $("#sumHistory").append("<li class='itemAgent' id='itemAgent" + AgentNumber + "'><span style='color:" + colorsMas[AgentNumber] + "'>●&nbsp&nbsp</span>" + Agent + "</li>");
+                $(".sumHistory").append("<li class='itemAgent' ><span style='color:" + colorsMas[AgentNumber] + "'>●&nbsp&nbsp</span>" + Agent + "</li>");
             
                 
                 SumMas = [];
@@ -376,31 +436,41 @@
                 });
 
                 objSumm = {
-                    label: "My First dataset",
+                    label: "My First dataset" + AgentNumber,
                     fillColor: "rgba(95,139,149,.0)",
                     strokeColor: colorsMas[AgentNumber],
                     highlightFill: "rgba(95,139,149,.75)",
                     highlightStroke: "rgba(95,139,149,1)",
+                    pointColor: colorsMas[AgentNumber],
+                    pointStrokeColor: colorsMas[AgentNumber],
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "#fff",
                     data: SumMas
                 };
 
                 objVisits = {
-                    label: "My First dataset",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
+                    label: "My First dataset" + AgentNumber,
+                    fillColor: "rgba(95,139,149,.0)",
+                    strokeColor: colorsMas[AgentNumber],
+                    highlightFill: "rgba(95,139,149,.75)",
+                    highlightStroke: "rgba(95,139,149,1)",
+                    pointColor: colorsMas[AgentNumber],
+                    pointStrokeColor: colorsMas[AgentNumber],
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    pointHighlightStroke: "#fff",
                     data: VisitsMas
                 };
 
                 objMML = {
-                    label: "My First dataset",
-                    fillColor: "rgba(95,139,149,.5)",
-                    strokeColor: "rgba(95,139,149,.8)",
+                    label: "My First dataset" + AgentNumber,
+                    fillColor: "rgba(95,139,149,.0)",
+                    strokeColor: colorsMas[AgentNumber],
                     highlightFill: "rgba(95,139,149,.75)",
                     highlightStroke: "rgba(95,139,149,1)",
+                    pointColor: colorsMas[AgentNumber],
+                    pointStrokeColor: colorsMas[AgentNumber],
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "#fff",
                     data: MMLMas
                 };
 
@@ -417,10 +487,10 @@
         }
 
 
-        function drawCostumers() {
+        function drawSum() {
 
             // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#ChartOfCostumers").get(0).getContext("2d");
+            var ctx = $("#ChartOfSum").get(0).getContext("2d");
 
             // Chart.defaults.global.responsive = true;
 
@@ -462,7 +532,7 @@
                 //String - Colour of the grid lines
                 scaleGridLineColor: "rgba(255,255,255,.08)",
 
-                tooltipFillColor: "rgba(95,139,149,.8)",
+                tooltipFillColor: "rgba(0,0,0,0.8)",
 
                 //Number - Width of the grid lines
                 scaleGridLineWidth: 1,
@@ -474,7 +544,7 @@
                 scaleShowVerticalLines: true,
 
                 //Boolean - If there is a stroke on each bar
-                barShowStroke: true,
+                barShowStroke: false,
 
                 //Number - Pixel width of the bar stroke
                 barStrokeWidth: 2,
@@ -497,12 +567,15 @@
             return myLineChart;
         }
 
-        function drawProducts() {
+        function drawVisits() {
 
             // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#ChartOfProducts").get(0).getContext("2d");
+            var ctx = $("#ChartOfVisits").get(0).getContext("2d");
 
             // Chart.defaults.global.responsive = true;
+
+
+
 
             var Sun = 177;
             var Mon = 177;
@@ -513,22 +586,33 @@
             var Sat = 177;
 
 
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+
+
+
+
             var data = {
                 labels: DateMas, //["Понедельник", "Вторник", "Среда", "Черверг", "Пятница", "Суббота"],
                 datasets: VisitsDataMas
             };
 
-            var myLineChart = new Chart(ctx).Bar(data, {
+            var myLineChart = new Chart(ctx).Line(data, {
                 //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
                 scaleBeginAtZero: true,
 
                 //Boolean - Whether grid lines are shown across the chart
                 scaleShowGridLines: true,
 
-                //String - Colour of the grid lines.05
+                //String - Colour of the grid lines
                 scaleGridLineColor: "rgba(255,255,255,.08)",
 
-                tooltipFillColor: "rgba(186,77,81,.8)",
+                tooltipFillColor: "rgba(0,0,0,0.8)",
 
                 //Number - Width of the grid lines
                 scaleGridLineWidth: 1,
@@ -540,7 +624,7 @@
                 scaleShowVerticalLines: true,
 
                 //Boolean - If there is a stroke on each bar
-                barShowStroke: true,
+                barShowStroke: false,
 
                 //Number - Pixel width of the bar stroke
                 barStrokeWidth: 2,
@@ -551,10 +635,94 @@
                 //Number - Spacing between data sets within X values
                 barDatasetSpacing: 1,
 
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
 
 
 
             });
+
+            console.log(myLineChart.generateLegend());
+
+            return myLineChart;
+        }
+
+        function drawMML() {
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#ChartOfMML").get(0).getContext("2d");
+
+            // Chart.defaults.global.responsive = true;
+
+
+
+
+            var Sun = 177;
+            var Mon = 177;
+            var Tue = 77;
+            var Wed = 77;
+            var Thur = 177;
+            var Fr = 177;
+            var Sat = 177;
+
+
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+
+
+
+
+            var data = {
+                labels: DateMas, //["Понедельник", "Вторник", "Среда", "Черверг", "Пятница", "Суббота"],
+                datasets: MMLDataMas
+            };
+
+            var myLineChart = new Chart(ctx).Line(data, {
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero: true,
+
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor: "rgba(255,255,255,.08)",
+
+                tooltipFillColor: "rgba(0,0,0,0.8)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: true,
+
+                //Boolean - If there is a stroke on each bar
+                barShowStroke: false,
+
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth: 2,
+
+                //Number - Spacing between each of the X value sets
+                barValueSpacing: 27,
+
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing: 1,
+
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+
+
+
+            });
+
+            console.log(myLineChart.generateLegend());
 
             return myLineChart;
         }
@@ -595,10 +763,12 @@
 
 
 
-            $('#ChartOfCostumers').attr('width', widthOfCanvasNew);
-            $('#ChartOfCostumers').attr('height', heightOfCanvasNew);
-            $('#ChartOfProducts').attr('width', widthOfCanvasNew);
-            $('#ChartOfProducts').attr('height', heightOfCanvasNew);
+            $('#ChartOfSum').attr('width', widthOfCanvasNew);
+            $('#ChartOfSum').attr('height', heightOfCanvasNew);
+            $('#ChartOfVisits').attr('width', widthOfCanvasNew);
+            $('#ChartOfVisits').attr('height', heightOfCanvasNew);
+            $('#ChartOfMML').attr('width', widthOfCanvasNew);
+            $('#ChartOfMML').attr('height', heightOfCanvasNew);
 
             //console.log(widthOfCanvasNew,heightOfCanvasNew);
 
