@@ -133,7 +133,7 @@
                         Мы партнеры для магазинов, кафе, ресторанов
                     </div>
                     <div class="itemOfDiagram">
-                        <canvas id="ChartOfMonth"></canvas>
+                        <canvas id="ChartOfTodayMonth"></canvas>
                     </div>
                     <div class="divOfHistory">
                         <ul class="sumHistory"></ul>
@@ -302,17 +302,17 @@
                             if (CountOfCostumersForRender === CountOfCostumers) {
 
                                 try {
-                                    MonthChart.render();
+                                    TodayMonthChart.render();
                                     //console.log('renderProducts');
                                 } catch (err) {
                                     //console.log(err);
-                                    MonthChart = drawMonth();
+                                    TodayMonthChart = drawTodayMonth();
                                     //console.log('renderErrProducts');
                                 }
                             } else {
                                 CountOfCostumersForRender = CountOfCostumers;
                                 //console.log('drawProducts');
-                                MonthChart = drawMonth();
+                                TodayMonthChart = drawTodayMonth();
                             }
                             break;
                         }
@@ -467,7 +467,8 @@
             VisitsDataMas = [];
             MMLDataMas = [];
             TodayDataMas = [];
-            MonthDataMas = [];
+            TodayMonthDataMas = [];
+            FullMonthDataMas = [];
             FullDataMas = [];
 
             //#F44336 Red
@@ -579,6 +580,31 @@
 
                 });
 
+                var SumMonth = 0;
+                var VisitsMonth = 0;
+                var MMLMonth = 0;
+
+                $(this).find("PersentOfSumMonth").each(function () {
+
+                    var SumForDiagram = $(this).text();
+                    SumMonth = +SumForDiagram;
+
+                });
+
+                $(this).find("PersentOfVisitsMonth").each(function () {
+
+                    var VisitsForDiagram = $(this).text();
+                    VisitsMonth = +VisitsForDiagram;
+
+                });
+
+                $(this).find("PersentOfMMLMonth").each(function () {
+
+                    var MMLForDiagram = $(this).text();
+                    MMLMonth = +MMLForDiagram;
+
+                });
+
                 objSumm = {
                     label: "My First dataset" + AgentNumber,
                     fillColor: "rgba(95,139,149,.0)",
@@ -627,13 +653,22 @@
                     data: [SumToday, VisitsToday, MMLToday]
                 };
 
-                objMonth = {
+                objTodayMonth = {
                     label: "My First dataset" + AgentNumber,
                     fillColor: colorsMas[AgentNumber],
                     strokeColor: colorsMas[AgentNumber],
                     highlightFill: colorsMas[AgentNumber],
                     highlightStroke: "#fff",
                     data: [SumFull, VisitsFull, MMLFull]
+                };
+
+                objFullMonth = {
+                    label: "My First dataset" + AgentNumber,
+                    fillColor: colorsMas[AgentNumber],
+                    strokeColor: colorsMas[AgentNumber],
+                    highlightFill: colorsMas[AgentNumber],
+                    highlightStroke: "#fff",
+                    data: [SumMonth, VisitsMonth, MMLMonth]
                 };
 
                 objFull = {
@@ -651,10 +686,12 @@
                 VisitsDataMas.push(objVisits);
                 MMLDataMas.push(objMML);
                 TodayDataMas.push(objToday);
-                MonthDataMas.push(objMonth);
+                TodayMonthDataMas.push(objTodayMonth);
                 FullDataMas.push(objFull);
 
             });
+
+            DateMas.sort();
 
             console.log(AgentMas, DateMas, SumMas, VisitsMas, MMLMas, SumDataMas, VisitsDataMas, MMLDataMas, FullDataMas);
 
@@ -978,10 +1015,10 @@
             return myLineChart;
         }
 
-        function drawMonth() {
+        function drawTodayMonth() {
 
             // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#ChartOfMonth").get(0).getContext("2d");
+            var ctx = $("#ChartOfTodayMonth").get(0).getContext("2d");
 
             // Chart.defaults.global.responsive = true;
 
@@ -1004,7 +1041,7 @@
 
             var data = {
                 labels: ["По сумме", "По клиентам", "По MML"],
-                datasets: MonthDataMas
+                datasets: TodayMonthDataMas
             };
 
             var myLineChart = new Chart(ctx).Bar(data, {
@@ -1041,8 +1078,6 @@
                 barDatasetSpacing: 1,
 
                 legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-
-
 
 
             });
@@ -1169,8 +1204,8 @@
             $('#ChartOfMML').attr('height', heightOfCanvasNew);
             $('#ChartOfToday').attr('width', widthOfCanvasNew);
             $('#ChartOfToday').attr('height', heightOfCanvasNew);
-            $('#ChartOfMonth').attr('width', widthOfCanvasNew);
-            $('#ChartOfMonth').attr('height', heightOfCanvasNew);
+            $('#ChartOfTodayMonth').attr('width', widthOfCanvasNew);
+            $('#ChartOfTodayMonth').attr('height', heightOfCanvasNew);
             $('#ChartOfFull').attr('width', widthOfCanvasNew);
             $('#ChartOfFull').attr('height', heightOfCanvasNew);
 
