@@ -110,7 +110,7 @@
                 
                 <div class="item">
                     <div class="captionOfDiagram">
-                        Показатели за день, %
+                        Показатели за текущий день, %
                     </div>
                     <!--<div class="AcbAndSku" id="CountOfProductsAll">
                     </div>-->
@@ -127,7 +127,7 @@
                 </div>
                 <div class="item">
                     <div class="captionOfDiagram">
-                        Показатели за текущий месяц, %
+                        Выполнение плана на текущий день, %
                     </div>
                     <div class="slogan">
                         Мы партнеры для магазинов, кафе, ресторанов
@@ -142,7 +142,22 @@
                 </div>
                 <div class="item">
                     <div class="captionOfDiagram">
-                       Общие показатели за текущий месяц, %
+                        Выполнение общего плана, %
+                    </div>
+                    <div class="slogan">
+                        Мы партнеры для магазинов, кафе, ресторанов
+                    </div>
+                    <div class="itemOfDiagram">
+                        <canvas id="ChartOfFullMonth"></canvas>
+                    </div>
+                    <div class="divOfHistory">
+                        <ul class="sumHistory"></ul>
+                    </div>
+                    <!-- <img width="0" height="0" src="" data-thumb="" alt="" title="" />-->
+                </div>
+                <div class="item">
+                    <div class="captionOfDiagram">
+                       Средние показатели выполнения плана, %
                     </div>
                     <div class="slogan">
                         Мы партнеры для магазинов, кафе, ресторанов
@@ -321,6 +336,25 @@
                             if (CountOfCostumersForRender === CountOfCostumers) {
 
                                 try {
+                                    FullMonthChart.render();
+                                    //console.log('renderProducts');
+                                } catch (err) {
+                                    //console.log(err);
+                                    FullMonthChart = drawFullMonth();
+                                    //console.log('renderErrProducts');
+                                }
+                            } else {
+                                CountOfCostumersForRender = CountOfCostumers;
+                                //console.log('drawProducts');
+                                FullMonthChart = drawFullMonth();
+                            }
+                            break;
+                        }
+                        case 7: {
+                            //console.log(CountOfProductsForRender, CountOfProducts);
+                            if (CountOfCostumersForRender === CountOfCostumers) {
+
+                                try {
                                     FullChart.render();
                                     //console.log('renderProducts');
                                 } catch (err) {
@@ -335,6 +369,7 @@
                             }
                             break;
                         }
+
                     }
 
                 }
@@ -677,7 +712,7 @@
                     strokeColor: colorsMas[AgentNumber],
                     highlightFill: colorsMas[AgentNumber],
                     highlightStroke: "#fff",
-                    data: [Math.round((SumFull + VisitsFull + MMLFull) / 3)]
+                    data: [Math.round((SumFull + VisitsFull + MMLFull) / 3), Math.round((SumMonth + VisitsMonth + MMLMonth) / 3)]
                 };
 
                 AgentNumber++;
@@ -687,6 +722,7 @@
                 MMLDataMas.push(objMML);
                 TodayDataMas.push(objToday);
                 TodayMonthDataMas.push(objTodayMonth);
+                FullMonthDataMas.push(objFullMonth);
                 FullDataMas.push(objFull);
 
             });
@@ -1087,11 +1123,10 @@
             return myLineChart;
         }
 
-
-        function drawFull() {
+        function drawFullMonth() {
 
             // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#ChartOfFull").get(0).getContext("2d");
+            var ctx = $("#ChartOfFullMonth").get(0).getContext("2d");
 
             // Chart.defaults.global.responsive = true;
 
@@ -1113,8 +1148,8 @@
 
 
             var data = {
-                labels: [""],
-                datasets: FullDataMas
+                labels: ["По сумме", "По клиентам", "По MML"],
+                datasets: FullMonthDataMas
             };
 
             var myLineChart = new Chart(ctx).Bar(data, {
@@ -1148,7 +1183,81 @@
                 barValueSpacing: 27,
 
                 //Number - Spacing between data sets within X values
-                barDatasetSpacing: 27,
+                barDatasetSpacing: 1,
+
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+
+            });
+
+            console.log(myLineChart.generateLegend());
+
+            return myLineChart;
+        }
+
+
+
+        function drawFull() {
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#ChartOfFull").get(0).getContext("2d");
+
+            // Chart.defaults.global.responsive = true;
+
+
+            var Sun = 177;
+            var Mon = 177;
+            var Tue = 77;
+            var Wed = 77;
+            var Thur = 177;
+            var Fr = 177;
+            var Sat = 177;
+
+
+            //var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+
+            //user = JSON.parse(user);
+
+            //alert(user);
+
+
+            var data = {
+                labels: ["На сегодня","Общий план"],
+                datasets: FullDataMas
+            };
+
+            var myLineChart = new Chart(ctx).Bar(data, {
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero: true,
+
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor: "rgba(255,255,255,.08)",
+
+                tooltipFillColor: "rgba(0,0,0,0.8)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: true,
+
+                //Boolean - If there is a stroke on each bar
+                barShowStroke: true,
+
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth: 2,
+
+                //Number - Spacing between each of the X value sets
+                barValueSpacing: 50,
+
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing: 1,
 
                 legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
 
@@ -1206,6 +1315,8 @@
             $('#ChartOfToday').attr('height', heightOfCanvasNew);
             $('#ChartOfTodayMonth').attr('width', widthOfCanvasNew);
             $('#ChartOfTodayMonth').attr('height', heightOfCanvasNew);
+            $('#ChartOfFullMonth').attr('width', widthOfCanvasNew);
+            $('#ChartOfFullMonth').attr('height', heightOfCanvasNew);
             $('#ChartOfFull').attr('width', widthOfCanvasNew);
             $('#ChartOfFull').attr('height', heightOfCanvasNew);
 
