@@ -717,6 +717,25 @@
 
                 AgentNumber++;
 
+
+                lengthOfDateMas=DateMas.length;
+
+                lengthOfSumDataMas = SumDataMas.length; //количество торговых
+
+                for (var k = 0; k < lengthOfSumDataMas; k++){
+                    while (SumDataMas[k].data.length<lengthOfDateMas)
+                    {
+                        SumDataMas[k].data.push(0);
+                    }
+                    while (VisitsDataMas[k].data.length < lengthOfDateMas) {
+                        VisitsDataMas[k].data.push(0);
+                    }
+                    while (MMLDataMas[k].data.length < lengthOfDateMas) {
+                        MMLDataMas[k].data.push(0);
+                    }
+                }
+    
+
                 SumDataMas.push(objSumm);
                 VisitsDataMas.push(objVisits);
                 MMLDataMas.push(objMML);
@@ -727,10 +746,85 @@
 
             });
 
-            DateMas.sort();
+            //DateMas.sort();
+
+            //str.split("").reverse().join("");
+
+            var str = "";
+
+            console.log("было", DateMas);
+
+            for (i = 0; i < DateMas.length; i++) {
+                mas = DateMas[i].split(".");
+                DateMas[i] = mas[1]+"."+mas[0];
+            }
+   
+            //str = DateMas.join(" ");
+
+            //str = str.split("").reverse().join("");
+
+
+           // DateMas = str.split(" ");
+
+            //DateMas.sort();
+
+            console.log("было", SumDataMas);
+
+            QuickSort(DateMas, 0, DateMas.length - 1);
+
+            console.log("стало", DateMas);
+            console.log("стало", SumDataMas);
+            
+            for (i = 0; i < DateMas.length; i++) {
+                mas = DateMas[i].split(".");
+                DateMas[i] = mas[1] + "." + mas[0];
+            }
+
 
             console.log(AgentMas, DateMas, SumMas, VisitsMas, MMLMas, SumDataMas, VisitsDataMas, MMLDataMas, FullDataMas);
 
+        }
+
+        function QuickSort(A, p, r) {
+            if (p < r) {
+                var q = Partition(A, p, r);
+                QuickSort(A, p, q);
+                QuickSort(A, q + 1, r);
+            }
+        }
+        function Partition(A, p, r) {
+            var x = A[r];
+            var i = p - 1;
+            for (var j = p; j <= r ; j++) {
+                if (A[j] <= x) {
+                    i++;
+                    var temp = A[i];
+                    A[i] = A[j];
+                    A[j] = temp;
+
+
+                    for (var k = 0; k < SumDataMas.length; k++) {
+
+                        var mas = SumDataMas[k].data;
+                        var temp = mas[i];
+                        mas[i] = mas[j];
+                        mas[j] = temp;
+
+                        var mas = VisitsDataMas[k].data;
+                        var temp = mas[i];
+                        mas[i] = mas[j];
+                        mas[j] = temp;
+
+                        var mas = MMLDataMas[k].data;
+                        var temp = mas[i];
+                        mas[i] = mas[j];
+                        mas[j] = temp;
+
+                    }
+
+                }
+            }
+            return i < r ? i : i - 1;
         }
 
 
@@ -1222,7 +1316,7 @@
 
 
             var data = {
-                labels: ["На сегодня","Общий план"],
+                labels: ["На сегодня","От общего плана"],
                 datasets: FullDataMas
             };
 
