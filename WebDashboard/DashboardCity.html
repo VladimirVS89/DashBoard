@@ -157,7 +157,7 @@
                 </div>
                 <div class="item">
                     <div class="captionOfDiagram">
-                       Средние показатели выполнения плана, %
+                       Средние показатели выполнения, %
                     </div>
                     <div class="slogan">
                         Мы партнеры для магазинов, кафе, ресторанов
@@ -189,7 +189,14 @@
         var CostumersChart;
         var ProductsChart;
         var CountOfCostumersPre;
-        var CountOfCostumersForRender;
+        var CountOfCostumersForRender1;
+        var CountOfCostumersForRender2;
+        var CountOfCostumersForRender3;
+        var CountOfCostumersForRender4;
+        var CountOfCostumersForRender5;
+        var CountOfCostumersForRender6;
+        var CountOfCostumersForRender7;
+        var CountOfCostumersForRender8;
         var CountOfCostumers;
         var CountOfProductsPre;
         var CountOfProductsForRender;
@@ -238,7 +245,7 @@
                         }
                         case 1: {
                             //console.log(CountOfCostumersForRender, CountOfCostumers);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender1 === CountOfCostumers) {
 
                                 try {
                                     SumChart.render();
@@ -249,7 +256,7 @@
                                     //console.log('renderErrCostumers');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender1 = CountOfCostumers;
                                 //console.log('drawCostumers');
                                 SumChart = drawSum();
                             }
@@ -257,7 +264,7 @@
                         }
                         case 2: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender2 === CountOfCostumers) {
 
                                 try {
                                     VisitsChart.render();
@@ -268,7 +275,7 @@
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender2 = CountOfCostumers;
                                 //console.log('drawProducts');
                                 VisitsChart = drawVisits();
                             }
@@ -276,7 +283,7 @@
                         }
                         case 3: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender3 === CountOfCostumers) {
 
                                 try {
                                     MMLChart.render();
@@ -287,7 +294,7 @@
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender3 = CountOfCostumers;
                                 //console.log('drawProducts');
                                 MMLChart = drawMML();
                             }
@@ -295,7 +302,7 @@
                         }
                         case 4: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender4 === CountOfCostumers) {
 
                                 try {
                                     TodayChart.render();
@@ -306,7 +313,7 @@
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender4 = CountOfCostumers;
                                 //console.log('drawProducts');
                                 TodayChart = drawToday();
                             }
@@ -314,7 +321,7 @@
                         }
                         case 5: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender5 === CountOfCostumers) {
 
                                 try {
                                     TodayMonthChart.render();
@@ -325,7 +332,7 @@
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender5 = CountOfCostumers;
                                 //console.log('drawProducts');
                                 TodayMonthChart = drawTodayMonth();
                             }
@@ -333,7 +340,7 @@
                         }
                         case 6: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender6 === CountOfCostumers) {
 
                                 try {
                                     FullMonthChart.render();
@@ -344,7 +351,7 @@
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender6 = CountOfCostumers;
                                 //console.log('drawProducts');
                                 FullMonthChart = drawFullMonth();
                             }
@@ -352,7 +359,7 @@
                         }
                         case 7: {
                             //console.log(CountOfProductsForRender, CountOfProducts);
-                            if (CountOfCostumersForRender === CountOfCostumers) {
+                            if (CountOfCostumersForRender7 === CountOfCostumers) {
 
                                 try {
                                     FullChart.render();
@@ -363,7 +370,7 @@
                                     //console.log('renderErrProducts');
                                 }
                             } else {
-                                CountOfCostumersForRender = CountOfCostumers;
+                                CountOfCostumersForRender7 = CountOfCostumers;
                                 //console.log('drawProducts');
                                 FullChart = drawFull();
                             }
