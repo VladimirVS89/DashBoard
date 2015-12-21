@@ -69,12 +69,12 @@ body {
     font-family:RobotoCondensed-Light;
     color: white;
     position: absolute;
-    top: 50px;
+    top: 25px;
     left: 50px;
     text-align: left;
-    height: 50px;
-    line-height: 50px;
-    font-size: 50px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 45px;
 }
 
 #CostumersAndProducts {
@@ -86,66 +86,66 @@ body {
 #Costumers {
     position: absolute;
     top: 5%;
-    left: 50px;
-    right: 50px;
+    left: 40px;
+    right: 10px;
     text-align: left;
 }
 
 #Products {
     position: absolute;
     top: 35%;
-    left: 50px;
-    right: 50px;
+    left: 40px;
+    right: 10px;
     text-align: left;
 }
 
 #Remains {
     position: absolute;
     top: 65%;
-    left: 50px;
-    right: 50px;
+    left: 40px;
+    right: 10px;
     text-align: left;
 }
 
 #CountOfCostumers {
     float: right;
-    height: 270px;
-    line-height: 270px;
-    font-size: 270px;
+    height: 230px;
+    line-height: 230px;
+    font-size: 230px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 15px,black 0 0 15px,black 0 0 15px;
 }
 
 #CountOfProducts {
     float: right;
-    height: 270px;
-    line-height: 270px;
-    font-size: 270px;
+    height: 230px;
+    line-height: 230px;
+    font-size: 230px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 15px,black 0 0 15px,black 0 0 15px;
 }
 
 #CountOfRemains {
     float: right;
-    height: 270px;
-    line-height: 270px;
-    font-size: 270px;
+    height: 230px;
+    line-height: 230px;
+    font-size: 230px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 15px,black 0 0 15px,black 0 0 15px;
 }
 
 #CountOfCostumersCaption {
-    line-height: 80px;
-    font-size: 80px;
+    line-height: 70px;
+    font-size: 70px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 
 #CountOfProductsCaption {
-    line-height: 80px;
-    font-size: 80px;
+    line-height: 70px;
+    font-size: 70px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 
 #CountOfRemainsCaption {
-    line-height: 80px;
-    font-size: 80px;
+    line-height: 70px;
+    font-size: 70px;
     text-shadow: black 4px 0px,black -4px 0, black 4px 4px,black -4px 4px,black -4px -4px,black 4px -4px,black 0 4px,black 0 -4px,black 0 0 13px,black 0 0 13px,black 0 0 13px;
 }
 
@@ -190,7 +190,7 @@ body {
 .divOfHistory {
     font-family: RobotoCondensed-Light;
     position: absolute;
-    top: 20px;
+    top: 25px;
     right: 0px;
     color: white;
     width: 550px;
@@ -203,6 +203,6 @@ body {
 
     .sumHistory .itemAgent {
         padding-bottom: 5px;
-        font-size: 20px;
+        font-size: 17px;
         list-style-type: none; /* Прячем исходные маркеры */
     }
